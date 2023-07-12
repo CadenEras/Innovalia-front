@@ -1,0 +1,61 @@
+{
+  "name": "cm-website",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Manganese92/Innovalia",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Manganese92/Innovalia"
+  },
+  "bugs": {
+    "url": "https://github.com/Manganese92/Innovalia/issues"
+  },
+  "contributors": [
+    "Morgane REGNAUT (Manganese92)",
+    "Melissa GRIES (CadenEras)",
+    "Gilles KOUNKOUD (GillesKND)"
+  ],
+  "engines": {
+    "node": ">=18.16.0",
+    "npm": ">=9.5.1"
+  },
+  "main": "pages/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next-build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.6.1",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@heroicons/react": "^1.0.6",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/stripe-js": "^1.54.1",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.1",
+    "js-cookie": "^3.0.5",
+    "laravel-vite-plugin": "^0.7.2",
+    "moment": "^2.29.4",
+    "next": "^13.4.1",
+    "prettier": "^2.8.8",
+    "prettier-eslint": "^15.0.1",
+    "react": "18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.62.1",
+    "swr": "^2.1.5",
+    "use-sound": "^4.0.1",
+    "validator": "^13.9.0",
+    "vite": "^4.0.0"
+  }
+}
