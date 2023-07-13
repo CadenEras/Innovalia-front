@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '@/components/layout';
 import axios from 'axios';
-import ServiceManagement from '@/components/ServiceManagement';
+//import ServiceManagement from '@/components/ServiceManagement';
 
 const ProviderDashboard = () => {
 	const router = useRouter();
@@ -34,7 +34,7 @@ const ProviderDashboard = () => {
 		<Layout>
 			<div className="container">
 				<h1>Tableau de bord du prestataire</h1>
-				<ServiceManagement />
+				{/*<ServiceManagement />*/}
 			</div>
 		</Layout>
 	);
