@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from "@/components/layout";
-import Sidebar from '/components/cm-account/Sidebar';
+import Sidebar from '/components/cm-account/sidebar';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 

@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import Layout from '../../components/layout'
 import { useRouter } from 'next/router'
 import { loadStripe } from '@stripe/stripe-js'
 import FormationCard from "@/components/cm-formation/formationCard";
