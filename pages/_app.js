@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import Layout from "../components/layout";
 import { useEffect } from "react";
 import * as Sentry from "@sentry/nextjs";
+import * as Tracings from "@sentry/browser";
+
 
 export default function App({ Component, pageProps }) {
 	const getLayout = Component.getLayout || ((page) => page);
@@ -19,8 +21,9 @@ export default function App({ Component, pageProps }) {
 Sentry.init({
 	dsn: "https://3b0bf07bd962456aba05708834576bd8@o1107556.ingest.sentry.io/4505529712050176",
 	integrations: [
-		new Sentry.BrowserTracing(),
-		new Sentry.Replay(),
+		//new Sentry.BrowserTracing(),
+		new Tracings.Replay(),
+		new Tracings.BrowserTracing()
 	],
 	// Performance Monitoring
 	tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!
