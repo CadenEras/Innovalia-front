@@ -15,12 +15,12 @@ export default function Register() {
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [birth, setBirth] = useState("");
 
-	const getCSRFToken = async () => {
+	/*const getCSRFToken = async () => {
 		const response = await axios.get(
 			"https://51.77.213.191:8000/api/getCSRFToken"
 		);
 		axios.defaults.headers.post["X-CSRF-Token"] = response.data.CSRFToken;
-	};
+	};*/
 
 	function formatDate(date) {
 		// Check if date is already in "YYYY-MM-DD" format
@@ -59,7 +59,7 @@ export default function Register() {
 			const headers = {
 				Accept: "application/json",
 				"Content-Type": "application/json",
-				"X-CSRF-TOKEN": getCSRFToken(),
+				//"X-CSRF-TOKEN": getCSRFToken(),
 			};
 
 			const response = await axios.post(url, data, { headers });
