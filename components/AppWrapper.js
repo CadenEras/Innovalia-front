@@ -1,14 +1,16 @@
-import Cookies from 'js-cookie';
-import { useEffect, useState } from 'react';
-import Navbar from './navbar';
+/**@format*/
+
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import Navbar from "./navbar";
 
 const AppWrapper = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [userPerm, setUserPerm] = useState('');
+	const [userPerm, setUserPerm] = useState("");
 
 	useEffect(() => {
-		const token = Cookies.get('token');
-		const userPerm = Cookies.get('userPerm');
+		const token = Cookies.get("token");
+		const userPerm = Cookies.get("userPerm");
 
 		if (token) {
 			setIsAuthenticated(true);

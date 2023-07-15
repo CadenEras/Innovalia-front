@@ -1,6 +1,5 @@
 /** @format */
 
-
 import Image from "next/image";
 import Layout from "@/components/layout";
 import Link from "next/link";
@@ -11,50 +10,50 @@ import SiteGrid from "@/components/cm-sitegrid";
 
 const cm_location = [
 	{
-		id: '1',
-		img: '/Asset 8.png',
-		Sit_Intitule: 'Paris 2ème',
+		id: "1",
+		img: "/Asset 8.png",
+		Sit_Intitule: "Paris 2ème",
 		Sit_Nombre_Salles_Max: 5,
-		Sit_Heure_Ouverture: '09:00',
-		Sit_Heure_Fermeture: '18:00',
-		Sit_Dte_Creation: '2023-07-10T10:00:00Z',
-		Sit_Dte_Last_Modif: '2023-07-10T12:30:00Z',
+		Sit_Heure_Ouverture: "09:00",
+		Sit_Heure_Fermeture: "18:00",
+		Sit_Dte_Creation: "2023-07-10T10:00:00Z",
+		Sit_Dte_Last_Modif: "2023-07-10T12:30:00Z",
 		Adr_Adresse_id: 1,
 	},
 	{
-		id: '2',
-		img: '/Asset 8.png',
-		Sit_Intitule: 'Paris 3ème',
+		id: "2",
+		img: "/Asset 8.png",
+		Sit_Intitule: "Paris 3ème",
 		Sit_Nombre_Salles_Max: 5,
-		Sit_Heure_Ouverture: '09:00',
-		Sit_Heure_Fermeture: '18:00',
-		Sit_Dte_Creation: '2023-07-10T10:00:00Z',
-		Sit_Dte_Last_Modif: '2023-07-10T12:30:00Z',
+		Sit_Heure_Ouverture: "09:00",
+		Sit_Heure_Fermeture: "18:00",
+		Sit_Dte_Creation: "2023-07-10T10:00:00Z",
+		Sit_Dte_Last_Modif: "2023-07-10T12:30:00Z",
 		Adr_Adresse_id: 2,
 	},
 	{
-		id: '3',
-		img: '/Asset 8.png',
-		Sit_Intitule: 'Paris 4ème',
+		id: "3",
+		img: "/Asset 8.png",
+		Sit_Intitule: "Paris 4ème",
 		Sit_Nombre_Salles_Max: 5,
-		Sit_Heure_Ouverture: '09:00',
-		Sit_Heure_Fermeture: '18:00',
-		Sit_Dte_Creation: '2023-07-10T10:00:00Z',
-		Sit_Dte_Last_Modif: '2023-07-10T12:30:00Z',
+		Sit_Heure_Ouverture: "09:00",
+		Sit_Heure_Fermeture: "18:00",
+		Sit_Dte_Creation: "2023-07-10T10:00:00Z",
+		Sit_Dte_Last_Modif: "2023-07-10T12:30:00Z",
 		Adr_Adresse_id: 3,
 	},
 	{
-		id: '4',
-		img: '/Asset 8.png',
-		Sit_Intitule: 'Paris 12ème',
+		id: "4",
+		img: "/Asset 8.png",
+		Sit_Intitule: "Paris 12ème",
 		Sit_Nombre_Salles_Max: 5,
-		Sit_Heure_Ouverture: '09:00',
-		Sit_Heure_Fermeture: '18:00',
-		Sit_Dte_Creation: '2023-07-10T10:00:00Z',
-		Sit_Dte_Last_Modif: '2023-07-10T12:30:00Z',
+		Sit_Heure_Ouverture: "09:00",
+		Sit_Heure_Fermeture: "18:00",
+		Sit_Dte_Creation: "2023-07-10T10:00:00Z",
+		Sit_Dte_Last_Modif: "2023-07-10T12:30:00Z",
 		Adr_Adresse_id: 4,
 	},
-]
+];
 
 // Page d'accueil de Cook Master
 export default function Home() {
@@ -62,7 +61,8 @@ export default function Home() {
 
 	useEffect(() => {
 		// Faites une requête GET à votre API pour récupérer la liste des événements
-		axios.get("/api/event")
+		axios
+			.get("https:///api/event")
 			.then((response) => {
 				setEvents(response.data);
 			})
@@ -71,45 +71,45 @@ export default function Home() {
 			});
 	}, []);
 
-
 	return (
 		<main>
 			{/* Bannière de bienvenue */}
-			<header className="cm-masthead">
-				<div className="container">
-					<div className="cm-masthead-subheading">
+			<header className='cm-masthead'>
+				<div className='container'>
+					<div className='cm-masthead-subheading'>
 						<h2>La cuisine n aura plus secret pour vous chez CookMaster</h2>
 					</div>
-					<Link className="cm-orange-button cm-btn btn-xl text-uppercase" href="/pricing">
+					<Link
+						className='cm-orange-button cm-btn btn-xl text-uppercase'
+						href='/pricing'
+					>
 						Essai gratuit
 					</Link>
 				</div>
 			</header>
-
 			{/* Section de présentation de Cook Master */}
-			<section className="cm-presentation-section">
-				<div className="container">
+			<section className='cm-presentation-section'>
+				<div className='container'>
 					<h2>CooK MASTER</h2>
 					<p>
-						Fuerit toto in consulatu sine provincia, cui fuerit, antequam designatus est, decreta provincia.
-						Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere.
-						Proficiscetur paludatus?
-						Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit;
-						Kalendis ei
+						Fuerit toto in consulatu sine provincia, cui fuerit, antequam
+						designatus est, decreta provincia. Sortietur an non? Nam et non
+						sortiri absurdum est, et, quod sortitus sis, non habere.
+						Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non
+						licebit. ianuario, Februario, provinciam non habebit; Kalendis ei
 						denique Martiis nascetur repente provincia.
 					</p>
 				</div>
 			</section>
-
 			{/* Section des événements */}
-			<section className="cm-event-section">
-				<div className="container">
+			<section className='cm-event-section'>
+				<div className='container'>
 					<h2>Événements</h2>
-					<div className="cm-event-grid">
+					<div className='cm-event-grid'>
 						{events.map((event) => (
-							<div className="cm-event" key={event.id}>
-								<div className="cm-event-title">{event.name}</div>
-								<div className="cm-event-description">
+							<div className='cm-event' key={event.id}>
+								<div className='cm-event-title'>{event.name}</div>
+								<div className='cm-event-description'>
 									<p>{event.description}</p>
 								</div>
 								<Link href={`/event/${event.id}`}>Voir les détails</Link>
@@ -118,22 +118,17 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
 			{/* Section de présentation de nos sites*/}
-
-			<section className="cm-site-section">
-				<div className="container">
+			<section className='cm-site-section'>
+				<div className='container'>
 					<h2>Nos sites</h2>
 					<SiteGrid sites={cm_location} />
 				</div>
 			</section>
-
-
 			{/* Section Nous contacter*/}
-
 		</main>
 	);
-};
+}
 
 Home.getLayout = function getLayout(page) {
 	return <Layout>{page}</Layout>;

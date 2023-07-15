@@ -9,22 +9,26 @@ import Cookies from "js-cookie";
 
 export default function Login() {
 	const router = useRouter();
-	const [email, setEmail] = useState("");// État pour l'email
-	const [password, setPassword] = useState("");// État pour le mot de passe
+	const [email, setEmail] = useState(""); // État pour l'email
+	const [password, setPassword] = useState(""); // État pour le mot de passe
 
 	const submitForm = async (event) => {
 		event.preventDefault();
 
 		try {
-			const response = await axios.post('https://51.77.213.191:8000/api/auth/login', {
-				Per_Email: email,
-				Per_MDP: password,
-			}, {
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
+			const response = await axios.post(
+				"https://51.77.213.191:8000/api/auth/login",
+				{
+					Per_Email: email,
+					Per_MDP: password,
+				},
+				{
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
 				}
-			});
+			);
 
 			if (response.status === 200) {
 				console.log(response.data);
@@ -33,26 +37,26 @@ export default function Login() {
 				const perm = response.data.user.Per_Permission;
 				const userId = response.data.user.Per_Personne_id;
 
-				console.log('token:', response.data.token);
-				console.log('perm:', perm);
-				console.log('userId:', userId);
-
-				Cookies.set('token', token, { expires: 1 }); // This cookie will expire after 1 day
-				Cookies.set('perm', perm, { expires: 1 }); // This cookie will expire after 1 day
-				Cookies.set('userId', userId, { expires: 1 }); // This cookie will expire after 1 day
+				// console.log('token:', response.data.token);
+				// console.log('perm:', perm);
+				// console.log('userId:', userId);
+				//
+				// Cookies.set('token', token, { expires: 1 }); // This cookie will expire after 1 day
+				// Cookies.set('perm', perm, { expires: 1 }); // This cookie will expire after 1 day
+				// Cookies.set('userId', userId, { expires: 1 }); // This cookie will expire after 1 day
 
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
-				}else if (perm === 1) {
+				} else if (perm === 1) {
 					await router.push(`/provider/index.js`);
-				}else {
+				} else {
 					await router.push(`/customer/${userId}`);
 				}
 			} else {
-				console.error('Une erreur est survenue lors de la connexion');
+				console.error("Une erreur est survenue lors de la connexion");
 			}
 		} catch (error) {
-			console.error('Une erreur est survenue lors de la connexion', error);
+			console.error("Une erreur est survenue lors de la connexion", error);
 		}
 	};
 
@@ -83,29 +87,21 @@ export default function Login() {
 								</div>
 								<div>
 									<form onSubmit={submitForm}>
-										<label htmlFor='email'>
-											Adresse E-mail :
-										</label>
+										<label htmlFor='email'>Adresse E-mail :</label>
 										<input
 											id='email'
 											className='form-control cm-form-orange'
 											type='email'
 											required='required'
-											onChange={(event) =>
-												setEmail(event.target.value)
-											}
+											onChange={(event) => setEmail(event.target.value)}
 										/>
-										<label htmlFor='mdp'>
-											Mot de passe :
-										</label>
+										<label htmlFor='mdp'>Mot de passe :</label>
 										<input
 											id='mdp'
 											className='form-control cm-form-orange'
 											type='password'
 											required='required'
-											onChange={(event) =>
-												setPassword(event.target.value)
-											}
+											onChange={(event) => setPassword(event.target.value)}
 										/>
 										<button
 											id='ns-forget-password'

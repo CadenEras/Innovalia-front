@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+/**@format*/
+
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@chakra-ui/react";
 
 const SidebarAdmin = () => {
@@ -15,9 +17,15 @@ const SidebarAdmin = () => {
 	};
 
 	return (
-		<div style={{ width: "250px", height: "100vh", backgroundColor: "#f5f5f5", position: "fixed" }}>
-
-			<Link className='cm-navbar-brand pb-5 pt-5' href='/' >
+		<div
+			style={{
+				width: "250px",
+				height: "100vh",
+				backgroundColor: "#f5f5f5",
+				position: "fixed",
+			}}
+		>
+			<Link className='cm-navbar-brand pb-5 pt-5' href='/'>
 				<Image
 					src='/../public/logo_cook_master.png'
 					alt='logo brand'
@@ -25,30 +33,29 @@ const SidebarAdmin = () => {
 					height='120'
 				/>
 			</Link>
-
 			<h3>Dashboard Admin</h3>
 			<ul style={{ listStyleType: "none", padding: 0 }}>
 				<li style={{ padding: "10px 0" }}>
-					<Button onClick={() => toggleList('formations')}>
+					<Button onClick={() => toggleList("formations")}>
 						Manage Formations
 					</Button>
-					{activeList === 'formations' && (
+					{activeList === "formations" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href="/admin/formations/cm-create-form"
+									href='/admin/formations/cm-create-form'
 									className='nav-link active pt-2'
 									aria-current='page'
-									>
+								>
 									Create Formation
 								</Link>
 							</li>
 							<li>
 								<Link
-									href="/admin/formations/index"
+									href='/admin/formations/index'
 									className='nav-link active pt-2'
 									aria-current='page'
-									>
+								>
 									List Formations
 								</Link>
 							</li>
@@ -56,14 +63,17 @@ const SidebarAdmin = () => {
 					)}
 				</li>
 				<li style={{ padding: "10px 0" }}>
-					<Button className='nav-link active' onClick={() => toggleList('events')}>
+					<Button
+						className='nav-link active'
+						onClick={() => toggleList("events")}
+					>
 						Manage Events
 					</Button>
-					{activeList === 'events' && (
+					{activeList === "events" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href="/admin/events/create"
+									href='/admin/events/create'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
@@ -72,7 +82,7 @@ const SidebarAdmin = () => {
 							</li>
 							<li>
 								<Link
-									href="/admin/events/list"
+									href='/admin/events/list'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
@@ -83,14 +93,14 @@ const SidebarAdmin = () => {
 					)}
 				</li>
 				<li style={{ padding: "10px 0" }}>
-					<Button onClick={() => toggleList('subscriptions')}>
+					<Button onClick={() => toggleList("subscriptions")}>
 						Manage Subscriptions
 					</Button>
-					{activeList === 'subscriptions' && (
+					{activeList === "subscriptions" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href="/admin/subscriptions/create"
+									href='/admin/subscriptions/create'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
@@ -99,7 +109,7 @@ const SidebarAdmin = () => {
 							</li>
 							<li>
 								<Link
-									href="/admin/subscriptions/list"
+									href='/admin/subscriptions/list'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
@@ -110,14 +120,12 @@ const SidebarAdmin = () => {
 					)}
 				</li>
 				<li style={{ padding: "10px 0" }}>
-					<Button onClick={() => toggleList('sites')}>
-						Manage Sites
-					</Button>
-					{activeList === 'sites' && (
+					<Button onClick={() => toggleList("sites")}>Manage Sites</Button>
+					{activeList === "sites" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href="/admin/sites/create"
+									href='/admin/sites/create'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
@@ -126,7 +134,7 @@ const SidebarAdmin = () => {
 							</li>
 							<li>
 								<Link
-									href="/admin/sites/list"
+									href='/admin/sites/list'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>

@@ -1,17 +1,21 @@
-import React from 'react';
+/**@format*/
+
+import React from "react";
 import Layout from "@/components/layout";
 import { loadStripe } from "@stripe/stripe-js";
 
-// Assurez-vous d'utiliser votre propre clé publique de Stripe
-const stripePromise = loadStripe('pk_test_51NKml4AnSnFZrpbO3zbvhROlQYAawzqbnSKwpIQrcdll4HVrsS9XV43fKsXUqZR2FLj9hiuPvpOxFyvomrdK729n00LAXKRcyg');
+// Assurez-vous d'utiliser votre propre clé public de Stripe
+const stripePromise = loadStripe(
+	"pk_test_51NKml4AnSnFZrpbO3zbvhROlQYAawzqbnSKwpIQrcdll4HVrsS9XV43fKsXUqZR2FLj9hiuPvpOxFyvomrdK729n00LAXKRcyg"
+);
 
 async function handleSubscribe(planId) {
 	const stripe = await stripePromise;
 
-	const response = await fetch('/api/create-checkout-session', {
-		method: 'POST',
+	const response = await fetch("/api/create-checkout-session", {
+		method: "POST",
 		headers: {
-			'Content-Type': 'application/json',
+			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ planId }),
 	});
@@ -40,7 +44,7 @@ function PricingPage() {
 					<li>Commenter, publier des avis</li>
 					<li>Accès aux leçons en illimité</li>
 				</ul>
-				<button onClick={() => handleSubscribe('master')}>Souscrire</button>
+				<button onClick={() => handleSubscribe("master")}>Souscrire</button>
 			</div>
 
 			<div>
@@ -50,7 +54,7 @@ function PricingPage() {
 					<li>Commenter, publier des avis</li>
 					<li>Accès aux leçons : 5 par jour</li>
 				</ul>
-				<button onClick={() => handleSubscribe('starter')}>Souscrire</button>
+				<button onClick={() => handleSubscribe("starter")}>Souscrire</button>
 			</div>
 
 			<div>
@@ -60,7 +64,7 @@ function PricingPage() {
 					<li>Présence de publicités dans le contenu</li>
 					<li>Commenter, publier des avis</li>
 				</ul>
-				<button onClick={() => handleSubscribe('free')}>Souscrire</button>
+				<button onClick={() => handleSubscribe("free")}>Souscrire</button>
 			</div>
 		</div>
 	);

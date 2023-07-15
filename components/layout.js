@@ -7,10 +7,9 @@ export default function Layout({ children }) {
 	return (
 		<>
 			<AppWrapper>
-					<main>{children}</main>
+				<main>{children}</main>
 				<Footer />
 			</AppWrapper>
-
 		</>
 	);
 }

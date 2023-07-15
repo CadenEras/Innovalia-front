@@ -34,15 +34,15 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 			.post("/auth/register", props)
 			.then(() => mutate())
 			.catch((error) => {
-				if (error.response.status !== 422) throw error;
-
+				if (error.response.status !== 422) {
+					throw error;
+				}
 				setErrors(error.response.data.errors);
 			});
 	};
 
 	const login = async ({ setErrors, setStatus, ...props }) => {
 		await csrf();
-
 		setErrors([]);
 		setStatus(null);
 
@@ -50,8 +50,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 			.post("/auth/login", props)
 			.then(() => mutate())
 			.catch((error) => {
-				if (error.response.status !== 422) throw error;
-
+				if (error.response.status !== 422) {
+					throw error;
+				}
 				setErrors(error.response.data.errors);
 			});
 	};
@@ -105,15 +106,19 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 	};
 
 	useEffect(() => {
-		if (middleware === "guest" && redirectIfAuthenticated && user)
+		if (middleware === "guest" && redirectIfAuthenticated && user) {
 			router.push(redirectIfAuthenticated);
+		}
 		if (
 			window.location.pathname === "/verify-email" &&
 			user?.email_verified_at
-		)
+		) {
 			router.push(redirectIfAuthenticated);
-		if (middleware === "auth" && error) logout();
-	}, [user, error]);
+		}
+		if (middleware === "auth" && error) {
+			logout();
+		}
+	}, [user, error, middleware, redirectIfAuthenticated, router, logout]);
 
 	return {
 		user,

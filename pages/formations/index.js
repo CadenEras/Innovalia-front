@@ -1,5 +1,7 @@
-import React from 'react';
-import axios from 'axios';
+/**@format*/
+
+import React from "react";
+import axios from "axios";
 import Layout from "@/components/layout";
 import ActivityGrid from "@/components/activity";
 import Link from "next/link";
@@ -11,31 +13,35 @@ const Formations = ({ formations }) => {
 			<header className='cm-masthead'>
 				<div className='container'>
 					<div className='cm-masthead-subheading'>
-						Avec les formations CookMaster, la cuisine ne sera plus un mystère pour vous.
+						Avec les formations CookMaster, la cuisine ne sera plus un mystère
+						pour vous.
 					</div>
-					<Link className='cm-orange-button cm-btn btn-xl text-uppercase' href='/auth/register'>
+					<Link
+						className='cm-orange-button cm-btn btn-xl text-uppercase'
+						href='/auth/register'
+					>
 						Essaie gratuit
 					</Link>
 				</div>
 			</header>
 
-			<section className={'cm-formation-body'}>
+			<section className={"cm-formation-body"}>
 				<h2>Formations</h2>
-				<ActivityGrid activities={formations} type="formations" />
+				<ActivityGrid activities={formations} type='formations' />
 			</section>
 		</main>
 	);
 };
 
 export async function getServerSideProps(context) {
-	const res = await axios.get('http://51.77.213.191:8000/api/formations');
+	const res = await axios.get("http://51.77.213.191:8000/api/formations");
 	// Si aucune formation n'est trouvée, renvoyer une erreur 404
 	if (!res.data) {
 		return {
 			notFound: true,
-		}
+		};
 	}
-	const formations = res.data.map(item => {
+	const formations = res.data.map((item) => {
 		return {
 			id: item.id,
 			title: item.title,

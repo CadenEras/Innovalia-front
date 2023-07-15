@@ -15,4 +15,4 @@ This website have been written with Next.JS and Laravel, featuring Sass and Boot
 Code beauty provided by Prettier.
 
 Next have been configuring to be used with the page router, no Tailwind css, with ESlint, in JavaScript, no src/ directory.
-Built-in support for i18n routing providing French and English(US) translation.
+Built-in support for i18n routing providing French and English(US) translation (to come).

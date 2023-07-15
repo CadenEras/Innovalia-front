@@ -8,7 +8,7 @@ Sentry.init({
 	integrations: [
 		//new Sentry.BrowserTracing(),
 		new Tracings.Replay(),
-		new Tracings.BrowserTracing()
+		new Tracings.BrowserTracing(),
 	],
 	// Performance Monitoring
 	tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!

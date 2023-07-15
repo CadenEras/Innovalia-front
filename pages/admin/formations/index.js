@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import FormationCardAdmin  from '@/components/cm-admin/FormationcardAdmin';
-import Pagination from "@/components/Pagination";
+/**@format*/
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+import FormationCardAdmin from "@/components/cm-admin/FormationcardAdmin";
+import Pagination from "@/components/Pagination";
 
 const FormationList = () => {
 	const [formations, setFormations] = useState([]);
@@ -10,15 +11,15 @@ const FormationList = () => {
 	const perPage = 16;
 
 	useEffect(() => {
-		fetchFormations().then(r => console.log(r));
+		fetchFormations().then((r) => console.log(r));
 	}, []);
 
 	const fetchFormations = async () => {
 		try {
-			const response = await axios.get('/api/admin/dashboard/formations');
+			const response = await axios.get("/api/admin/dashboard/formations");
 			setFormations(response.data);
 		} catch (error) {
-			console.error('Error fetching formations:', error);
+			console.error("Error fetching formations:", error);
 		}
 	};
 	// Fonction de changement de page
@@ -26,11 +27,10 @@ const FormationList = () => {
 		setCurrentPage(pageNumber);
 	};
 
-
 	return (
 		<div>
 			<h1>Formations</h1>
-			<div className="formation-grid">
+			<div className='formation-grid'>
 				{formations.map((formation) => (
 					<FormationCardAdmin key={formation.id} formation={formation} />
 				))}
@@ -44,6 +44,5 @@ const FormationList = () => {
 		</div>
 	);
 };
-
 
 export default FormationList;

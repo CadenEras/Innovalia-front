@@ -1,8 +1,10 @@
-import Link from 'next/link'
+/**@format*/
+
+import Link from "next/link";
 
 export default function FormationCard({ formation }) {
 	return (
-		<div className="formation-card">
+		<div className='formation-card'>
 			<h2>{formation.for_intitule}</h2>
 			<p>{formation.for_description}</p>
 			<p>Tarif HT: {formation.for_tarif_HT}€</p>
@@ -10,5 +12,5 @@ export default function FormationCard({ formation }) {
 			<p>Durée: {formation.for_duree}</p>
 			<button onClick={handlePayment}>Payer maintenant</button>
 		</div>
-	)
+	);
 }

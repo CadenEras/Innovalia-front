@@ -20,8 +20,8 @@ export default function RegisterProvider() {
 	const [description, setDescription] = useState("");
 	const [typeId, setTypeId] = useState("");
 	const getCSRFToken = async () => {
-		const response = await axios.get('https://51.77.213.191:8000/getCSRFToken');
-		axios.defaults.headers.post['X-CSRF-Token'] = response.data.CSRFToken;
+		const response = await axios.get("https://51.77.213.191:8000/getCSRFToken");
+		axios.defaults.headers.post["X-CSRF-Token"] = response.data.CSRFToken;
 	};
 
 	function formatDate(date) {
@@ -36,7 +36,7 @@ export default function RegisterProvider() {
 	const handleBirthChange = (event) => {
 		let formattedDate = formatDate(event.target.value);
 		setBirth(formattedDate);
-	}
+	};
 
 	const submitForm = async (event) => {
 		event.preventDefault();
@@ -60,7 +60,6 @@ export default function RegisterProvider() {
 				Per_TVA_Intra: tvaIntra,
 				Pre_Description: description,
 				Prest_Type_id: typeId,
-
 			};
 			console.log(data);
 
@@ -79,7 +78,10 @@ export default function RegisterProvider() {
 				console.error("Une erreur est survenue lors de la création du compte");
 			}
 		} catch (error) {
-			console.error("Une erreur est survenue lors de la création du compte\n", error);
+			console.error(
+				"Une erreur est survenue lors de la création du compte\n",
+				error
+			);
 		}
 	};
 
@@ -109,7 +111,7 @@ export default function RegisterProvider() {
 									<h2>Créer un compte Prestataire</h2>
 								</div>
 
-								<div >
+								<div>
 									<form
 										id='cm-re-form'
 										className='cm-flex-wrap'
@@ -136,55 +138,43 @@ export default function RegisterProvider() {
 											/>
 										</div>
 										<div className='cm-flex-width-group'>
-											<label htmlFor='email'>
-												Adresse E-mail :
-											</label>
+											<label htmlFor='email'>Adresse E-mail :</label>
 											<input
 												id='email'
 												className='form-control cm-form-orange'
 												type='email'
 												required='required'
-												onChange={(event) =>
-													setEmail(event.target.value)
-												}
+												onChange={(event) => setEmail(event.target.value)}
 											/>
 										</div>
 										<div className='cm-flex-width-group'>
-											<label htmlFor='password'>
-												Mot de passe :
-											</label>
+											<label htmlFor='password'>Mot de passe :</label>
 											<input
 												id='password'
 												className='form-control cm-form-orange'
 												type='password'
 												name='password'
 												required='required'
-												placeholder="Enter password"
-												onChange={(event) =>
-													setPassword(event.target.value)
-												}
+												placeholder='Enter password'
+												onChange={(event) => setPassword(event.target.value)}
 											/>
 										</div>
 										<div className='cm-flex-width-group'>
-											<label htmlFor='password-conf'>
-												Confirmation :
-											</label>
+											<label htmlFor='password-conf'>Confirmation :</label>
 											<input
 												id='password-conf'
 												className='form-control cm-form-orange'
 												type='password'
 												name='password-v'
 												required='required'
-												placeholder="Enter password Confirmation"
+												placeholder='Enter password Confirmation'
 												onChange={(event) =>
 													setPasswordConfirm(event.target.value)
 												}
 											/>
 										</div>
 										<div className='cm-flex-width-group'>
-											<label htmlFor='birth'>
-												Date de naissance :
-											</label>
+											<label htmlFor='birth'>Date de naissance :</label>
 											<input
 												id='birth'
 												className='form-control cm-form-orange'
@@ -282,7 +272,7 @@ export default function RegisterProvider() {
 										>
 											S&apos;inscrire
 										</button>
-										<input type='hidden' name ="_token" value="csrf_token()"/>
+										<input type='hidden' name='_token' value='csrf_token()' />
 									</form>
 								</div>
 								<div className='row'>
@@ -304,4 +294,3 @@ export default function RegisterProvider() {
 		</>
 	);
 }
-

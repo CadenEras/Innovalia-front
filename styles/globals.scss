@@ -38,8 +38,6 @@
 	}
 }
 
-
-
 *, *::before, *::after {
 	box-sizing: border-box !important;
 	padding: 0;
@@ -170,7 +168,6 @@ a {
 .cm-flex-width-group {
 	width: 100%;
 	flex: 1 0 100%;
-	/*padding: 0 10px;*/
 }
 
 .cm-flex-wrap {
@@ -181,8 +178,6 @@ a {
 .cm-btn-sm {
 	padding: 0.1em 1rem;
 }
-
-/** --NAVBAR-- */
 
 .cm-navbar {
 	--bs-navbar-padding-x: 0;
@@ -220,8 +215,6 @@ a {
 	}
 }
 
-/** --Logo Navbar-- */
-
 .cm-navbar-brand {
 	padding-top: 0.3125rem;
 	padding-bottom: 0.3125rem;
@@ -253,7 +246,6 @@ a {
 	background-color: var(--cm-color-orange);
 }
 
-/*header Home.js*/
 header.cm-masthead {
 	padding-top: 15rem;
 	padding-bottom: 11rem;
@@ -273,9 +265,7 @@ header.cm-masthead {
 	}
 }
 
-/* Styles pour l'en-tête Lessons.js */
 header.cm-header {
-
 	height: 500px;
 	padding-top: 8rem;
 	padding-bottom: 8rem;
@@ -288,7 +278,7 @@ header.cm-header {
 	background-size: cover;
 }
 
-.myheader-lessons-container {
+.cm-header-lessons-container {
 	font-size: 3.25rem;
 	font-weight: 100;
 	line-height: 3.25rem;
@@ -299,28 +289,26 @@ header.cm-header {
 	height: 100%;
   }
 
-
-/* Styles pour la section des ateliers sur site */
-.cooking-workshop-section {
+.cm-cooking-workshop-section {
 	background-color: #fff;
 	padding: 50px 0;
 }
 
-.title-section {
+.cm-title-section {
 	font-size: 5em;
 	font-weight: bold;
 	margin-bottom: 20px;
 	color: #FF7D00;
 }
 
-.activity-grid {
+.cm-activity-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	gap: 13px;
 }
 
-.activity-item {
+.cm-activity-item {
 	width: 266px;
 	height: 550px;
 	margin: 13px;
@@ -328,10 +316,10 @@ header.cm-header {
 	border: 1px solid #FF7D00;
 	background-color: #fff;
 	overflow: hidden;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.activity-image {
+.cm-activity-image {
 	width: 100%;
 	height: 40%;
 	object-fit: cover;
@@ -341,44 +329,42 @@ header.cm-header {
 	padding: 10px;
 }
 
-.activity-title {
+.cm-activity-title {
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 5px;
 }
 
-.activity-description {
+.cm-activity-description {
 	font-size: 14px;
 	color: #888888;
 }
 
-/* Styles pour la section des leçons de cuisine en ligne */
-.cooking-lesson-section {
+.cm-cooking-lesson-section {
 	padding: 40px 0;
 	background-color: gray;
 }
 
-/* Styles pour la section des témoignages */
-.testimonials-section {
+.cm-testimonials-section {
 	padding: 40px 0;
 	background-color: #C4C4C4;
 }
 
-.title-section {
+.cm-title-section {
 	text-align: center;
 	font-size: 24px;
 	color: #333;
 	margin-bottom: 20px;
 }
 
-.testimonials-grid {
+.cm-testimonials-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	gap: 20px;
 	justify-items: center;
 }
 
-.testimonial {
+.cm-testimonial {
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 4px;
@@ -386,7 +372,7 @@ header.cm-header {
 	text-align: center;
 }
 
-.testimonial-photo {
+.cm-testimonial-photo {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
@@ -394,71 +380,65 @@ header.cm-header {
 	margin-bottom: 10px;
 }
 
-.testimonial-name {
+.cm-testimonial-name {
 	font-size: 18px;
 	font-weight: bold;
 	color: #333;
 	margin-bottom: 5px;
 }
 
-.testimonial-message {
+.cm-testimonial-message {
 	font-size: 16px;
 	color: #666;
 	margin-bottom: 10px;
 }
 
-.testimonial-city {
+.cm-testimonial-city {
 	font-size: 14px;
 	color: #999;
 }
 
-/* Styles pour le footer */
 footer.py-5 {
 	color: white;
 	background-color: #FF7D00;
+
+	.cm-footer-logo {
+		height: 96px;
+	}
+
+	.cm-footer-text {
+		font-size: 1.2rem;
+	}
+
+	.cm-footer-link {
+		color: white;
+		text-decoration: none;
+		&:hover {
+			color: var(--cm-color-gray)
+		}
+	}
 }
 
-footer.py-5 .cm-footer-logo {
-	height: 96px;
-}
-	
-footer.py-5 .cm-footer-text {
-	font-size: 1.2rem;
-}
-
-footer.py-5 .cm-footer-link {
-	color: white;
-	text-decoration: none;
-}
-
-footer.py-5 .cm-footer-link:hover {
-	color: var(--cm-color-gray)
-}
-
-
-/* Styles pour les écrans de taille moyenne (tablette) */
 @media (min-width: 768px) and (max-width: 991px) {
-	.activity-grid {
+	.cm-activity-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.activity-item {
+	.cm-activity-item {
 		width: auto;
 		height: auto;
 	}
 }
 
-/* Styles pour les petits écrans (mobile) */
 @media (max-width: 767px) {
-	.activity-grid {
+	.cm-activity-grid {
 		grid-template-columns: 1fr;
 	}
-	.activity-item {
+	.cm-activity-item {
 		width: auto;
 		height: auto;
 	}
 }
 
-//Style affichage des sites
 .cm-site-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(371px, 1fr));
@@ -470,7 +450,7 @@ footer.py-5 .cm-footer-link:hover {
 	height: 500px;
 	background-color: #fff;
 	border-radius: 8px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	overflow: hidden;
 }
 
@@ -492,6 +472,9 @@ footer.py-5 .cm-footer-link:hover {
 
 .cm-site-details {
 	padding: 20px;
+	button {
+		margin-top: 10px;
+	}
 }
 
 .cm-site-title {
@@ -504,32 +487,16 @@ footer.py-5 .cm-footer-link:hover {
 .cm-site-description {
 	font-size: 14px;
 	color: #888888;
+	p {
+		margin-bottom: 5px;
+		&:first-child {
+			margin-top: 10px;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+		span {
+			color: #FF7D00FF;
+		}
+	}
 }
-
-.cm-site-description p {
-	margin-bottom: 5px;
-}
-
-.cm-site-description p:first-child {
-	margin-top: 10px;
-}
-
-.cm-site-description p:last-child {
-	margin-bottom: 0;
-}
-
-.cm-site-description p span {
-	color: #FF7D00FF;
-}
-
-.cm-site-details button {
-	margin-top: 10px;
-}
-
-
-/*stye admin side*/
-
-
-
-
-  
