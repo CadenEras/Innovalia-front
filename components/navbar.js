@@ -3,8 +3,6 @@
 	import "bootstrap/dist/css/bootstrap.css";
 	import Link from "next/link";
 	import Image from "next/image";
-	import ThemeToggle from "@/components/theme-toggle";
-	import { HStack } from "@chakra-ui/react";
 	import { useEffect, useState } from "react";
 	import Cookies from "js-cookie";
 	import { useCookies } from 'react-cookie';
@@ -121,9 +119,6 @@
 									</Link>
 								</li>
 							</ul>
-								<HStack>
-										<ThemeToggle />
-								</HStack>
 						</div>
 						<div className='cm-d-none-lg'>
 							{isAuthenticated ? (
