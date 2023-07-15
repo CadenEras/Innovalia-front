@@ -31,7 +31,7 @@
 					<div className='container-fluid'>
 						<Link className='cm-navbar-brand' href='/'>
 							<Image
-								src='/../public/logo_cook_master.png'
+								src='/logo_cook_master.png'
 								alt='logo brand'
 								width='45'
 								height='45'
@@ -75,7 +75,7 @@
 									<Link
 										className='nav-link active'
 										aria-current='page'
-										href='/events'
+										href='/event'
 									>
 										Évènements
 									</Link>
@@ -135,7 +135,7 @@
 									</Link>
 									<Link className='d-inline' href={profileLink}>
 										<Image
-											src='/../public/default_profil_pict.png'
+											src='/default_profil_pict.png'
 											id='cm-header-profile-picture'
 											alt='profilePhoto'
 											className='cm-avatar img-responsive'

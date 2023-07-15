@@ -1,4 +1,5 @@
 /**@format*/
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -8,13 +9,8 @@ import Cookies from "js-cookie";
 
 export default function Login() {
 	const router = useRouter();
-
 	const [email, setEmail] = useState("");// État pour l'email
 	const [password, setPassword] = useState("");// État pour le mot de passe
-
-
-
-
 
 	const submitForm = async (event) => {
 		event.preventDefault();
@@ -27,9 +23,8 @@ export default function Login() {
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
-				},
+				}
 			});
-
 
 			if (response.status === 200) {
 				console.log(response.data);
@@ -37,7 +32,6 @@ export default function Login() {
 				const token = response.data.Per_Token;
 				const perm = response.data.user.Per_Permission;
 				const userId = response.data.user.Per_Personne_id;
-
 
 				console.log('token:', response.data.token);
 				console.log('perm:', perm);
@@ -47,21 +41,19 @@ export default function Login() {
 				Cookies.set('perm', perm, { expires: 1 }); // This cookie will expire after 1 day
 				Cookies.set('userId', userId, { expires: 1 }); // This cookie will expire after 1 day
 
-				if (perm === 2)
-					await router.push('/admin/cm-create-form.js');
-				else if (perm === 1)
+				if (perm === 2) {
+					await router.push("/admin/cm-create-form.js");
+				}else if (perm === 1) {
 					await router.push(`/provider/index.js`);
-				else
-				await router.push(`/customer/${userId}`);
-
-			}else {
+				}else {
+					await router.push(`/customer/${userId}`);
+				}
+			} else {
 				console.error('Une erreur est survenue lors de la connexion');
-
-
 			}
-			} catch (error) {
+		} catch (error) {
 			console.error('Une erreur est survenue lors de la connexion', error);
-			}
+		}
 	};
 
 	return (
@@ -69,7 +61,6 @@ export default function Login() {
 			<section>
 				<div className='cm-auth-bg cm-auth-bg-random'></div>
 				<div className='container min-vh-100'>
-
 					<div className='row min-vh-100'>
 						<div
 							id='login'
@@ -79,7 +70,7 @@ export default function Login() {
 								<div className='row pb-3'>
 									<Link href='/admin/index.js'>
 										<Image
-											src='/../public/logo_cook_master.png'
+											src='/logo_cook_master.png'
 											alt='cook-master logo'
 											className='cm-logo-auth'
 											width='90'
@@ -90,7 +81,6 @@ export default function Login() {
 								<div className='row'>
 									<h2>Se connecter</h2>
 								</div>
-
 								<div>
 									<form onSubmit={submitForm}>
 										<label htmlFor='email'>

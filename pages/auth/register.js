@@ -5,7 +5,6 @@
 	import { useRouter } from "next/router";
 	import axios from "axios";
 
-
 	export default function Register() {
 		const router = useRouter();
 		const [email, setEmail] = useState("");
@@ -14,7 +13,6 @@
 		const [password, setPassword] = useState("");
 		const [passwordConfirm, setPasswordConfirm] = useState("");
 		const [birth, setBirth] = useState("");
-
 
 		const getCSRFToken = async () => {
 			const response = await axios.get('http://51.77.213.191:8000/api/getCSRFToken');
@@ -52,7 +50,6 @@
 					Per_MDP_confirmation: passwordConfirm,
 					Per_Nom: lastName,
 					Per_Prenom: firstName
-
 				};
 				console.log(data);
 
@@ -91,7 +88,7 @@
 									<div className='row pb-3'>
 										<Link href='/'>
 											<Image
-												src='/../public/logo_cook_master.png'
+												src='/logo_cook_master.png'
 												alt='cook-master logo'
 												className='cm-logo-auth'
 												width={90}
@@ -102,7 +99,6 @@
 									<div className='row'>
 										<h2>Créer un compte</h2>
 									</div>
-
 									<div >
 										<form
 											id='cm-re-form'
@@ -249,7 +245,7 @@
 												href='/auth/registerPresta'
 												className='btn cm-btn-sm cm-orange-button'
 											>
-												Par ici
+												Par ici !
 											</Link>
 										</p>
 									</div>

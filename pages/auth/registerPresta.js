@@ -1,3 +1,5 @@
+/**@format*/
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -66,7 +68,6 @@ export default function RegisterProvider() {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 				"X-CSRF-TOKEN": getCSRFToken(),
-
 			};
 
 			const response = await axios.post(url, data, { headers });
@@ -82,8 +83,6 @@ export default function RegisterProvider() {
 		}
 	};
 
-
-	;
 	return (
 		<>
 			<section id='register'>
@@ -116,7 +115,6 @@ export default function RegisterProvider() {
 										className='cm-flex-wrap'
 										onSubmit={submitForm}
 									>
-
 										<div className='cm-flex-width-group'>
 											<label htmlFor='lastName'>Nom :</label>
 											<input
@@ -284,9 +282,7 @@ export default function RegisterProvider() {
 										>
 											S&apos;inscrire
 										</button>
-
 										<input type='hidden' name ="_token" value="csrf_token()"/>
-
 									</form>
 								</div>
 								<div className='row'>
