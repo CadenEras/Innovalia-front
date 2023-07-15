@@ -45,7 +45,7 @@ export default function Register() {
 		}
 
 		try {
-			const url = "https://51.77.213.191:8000/api/auth/register";
+			const url = "http://51.77.213.191:8000/api/auth/register";
 			const data = {
 				Per_Dte_Naissance: birth,
 				Per_Email: email,
