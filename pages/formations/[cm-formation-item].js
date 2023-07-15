@@ -17,11 +17,11 @@ export default function cmFormationItem({ formation }) {
 		return <div>Chargement...</div>;
 	}
 
-	async function handlePayment() {
+	/*async function handlePayment() {
 		const stripe = await stripePromise;
 
 		// Créez une nouvelle session de paiement en utilisant votre API backend.
-		const response = await fetch("/api/create-checkout-session", {
+		const response = await fetch("http://51.77.213.191:8000/api/create-checkout-session", {
 			method: "POST",
 		});
 		const session = await response.json();
@@ -33,7 +33,7 @@ export default function cmFormationItem({ formation }) {
 		if (result.error) {
 			alert(result.error.message);
 		}
-	}
+	}*/
 
 	return (
 		<Layout>
@@ -44,7 +44,7 @@ export default function cmFormationItem({ formation }) {
 }
 
 export async function getStaticPaths() {
-	const res = await fetch("https://51.77.213.191:8000/api/formations");
+	const res = await fetch("http://51.77.213.191:8000/api/formations");
 	const formations = await res.json();
 
 	const paths = formations.map((formation) => ({
@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const res = await fetch(
-		`https://51.77.213.191:8000/api/formations/${params.id}`
+		`http://51.77.213.191:8000/api/formations/${params.id}`
 	);
 	const formation = await res.json();
 

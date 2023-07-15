@@ -32,7 +32,7 @@ const CreateFormation = () => {
 			);
 			// Gérer le succès, rediriger vers la page de la formation nouvellement créée ou afficher un message de réussite
 			console.log(response.data);
-			router.push(`/formations/${response.data.id}`);
+			await router.push(`/formations/${response.data.id}`);
 		} catch (error) {
 			// Gérer l'erreur, afficher un message d'erreur ou des erreurs de validation
 			console.error("Erreur lors de la création de la formation :", error);
