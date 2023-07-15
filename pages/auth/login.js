@@ -16,7 +16,7 @@ export default function Login() {
 		event.preventDefault();
 
 		try {
-			const response = await axios.post('http://51.77.213.191:8000/api/auth/login', {
+			const response = await axios.post('https://51.77.213.191:8000/api/auth/login', {
 				Per_Email: email,
 				Per_MDP: password,
 			}, {

@@ -11,7 +11,7 @@ const Account = () => {
 		const token = Cookies.get('token'); // Récupérez le token du cookie
 
 		if (token) {
-			axios.get('http://51.77.213.191:8000/api/user/profil', {
+			axios.get('https://51.77.213.191:8000/api/user/profil', {
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',

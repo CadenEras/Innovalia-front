@@ -6,7 +6,7 @@ const OrderHistory = () => {
 
 	useEffect(() => {
 		// Assurez-vous de remplacer cette URL par l'URL de votre API
-		axios.get('http://51.77.213.191:8000/api/orders')
+		axios.get('https://51.77.213.191:8000/api/orders')
 			.then(response => setOrders(response.data))
 			.catch(error => console.error(error));
 	}, []);

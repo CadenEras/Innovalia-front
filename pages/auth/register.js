@@ -15,7 +15,7 @@
 		const [birth, setBirth] = useState("");
 
 		const getCSRFToken = async () => {
-			const response = await axios.get('http://51.77.213.191:8000/api/getCSRFToken');
+			const response = await axios.get('https://51.77.213.191:8000/api/getCSRFToken');
 			axios.defaults.headers.post['X-CSRF-Token'] = response.data.CSRFToken;
 		};
 
@@ -42,7 +42,7 @@
 			}
 
 			try {
-				const url = "http://51.77.213.191:8000/api/auth/register";
+				const url = "https://51.77.213.191:8000/api/auth/register";
 				const data = {
 					Per_Dte_Naissance: birth,
 					Per_Email: email,
