@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+//import { getCSRFToken } from "@/getCSRFToken";
 
 export default function Register() {
 	const router = useRouter();
@@ -21,6 +22,13 @@ export default function Register() {
 		);
 		axios.defaults.headers.post["X-CSRF-Token"] = response.data.CSRFToken;
 	};*/
+
+	/*const csrf = await getCSRFToken();
+
+	if (!csrf) {
+		console.error('CSRF token not available');
+		return;
+	}*/
 
 	function formatDate(date) {
 		// Check if date is already in "YYYY-MM-DD" format
@@ -44,25 +52,28 @@ export default function Register() {
 			return;
 		}
 
+		const url = "/api/register";
+		const data = {
+			Per_Dte_Naissance: birth,
+			Per_Email: email,
+			Per_MDP: password,
+			Per_MDP_confirmation: passwordConfirm,
+			Per_Nom: lastName,
+			Per_Prenom: firstName,
+		};
+
+		const JSONdata = JSON.stringify(data)
+		console.log(data);
+		console.log(JSONdata);
+
+		const headers = {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			//"X-CSRF-TOKEN": csrf,
+		};
+
 		try {
-			const url = "http://51.77.213.191:8000/api/auth/register";
-			const data = {
-				Per_Dte_Naissance: birth,
-				Per_Email: email,
-				Per_MDP: password,
-				Per_MDP_confirmation: passwordConfirm,
-				Per_Nom: lastName,
-				Per_Prenom: firstName,
-			};
-			//console.log(data);
-
-			const headers = {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				//"X-CSRF-TOKEN": getCSRFToken(),
-			};
-
-			const response = await axios.post(url, data, { headers });
+			const response = await axios.post(url, JSONdata, { headers });
 
 			if (response.status === 201) {
 				console.log("Compte créé avec succès");
@@ -215,7 +226,7 @@ export default function Register() {
 											S&apos;inscrire
 										</button>
 
-										<input type='hidden' name='_token' value='csrf_token()' />
+										{/*<input type="hidden" name="_token" value="{{ csrf_token() }}" />*/}
 									</form>
 								</div>
 								<div className='row'>
