@@ -33,26 +33,30 @@ export default function Login() {
 		};
 
 		try {
-			const response = await fetch(url, option)
+			const response = await fetch(url, option);
+
+			if (!response.ok) {
+				const err = await response.text();
+				throw new Error(err);
+			}
+
+			//console.log(response.json());
+			const usable = await response.json();
+
+			console.log("API response data", usable);
 
 			if (response.status === 200) {
-				console.log(response.data);
+				const token = usable.data.token;
+				const perm = usable.data.user.Per_Permission;
+				const userId = usable.data.user.Per_Personne_id;
 
-				const token = response.data.Per_Token;
-				console.log(response.data.Per_Token);
-				const perm = response.data.user.Per_Permission;
-				console.log(response.data.user.Per_Permission);
-				const userId = response.data.user.Per_Personne_id;
-
-				await router.push("/");
-
-				/*if (perm === 2) {
+				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
 				} else if (perm === 1) {
 					await router.push(`/provider/index.js`);
 				} else {
 					await router.push(`/customer/${userId}`);
-				}*/
+				}
 			} else {
 				console.error("Une erreur est survenue lors de la connexion");
 			}

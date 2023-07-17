@@ -32,5 +32,5 @@ export default async function handler(req, res) {
 	// Sends an HTTP success code
 	//http://51.77.213.191:8000/api/auth/register
 	const response = await axios.post('http://51.77.213.191:8000/api/auth/register', req.body);
-	res.status(response.status).json({ data: response.data })
+	return res.status(response.status).json({ data: response.data })
 }
