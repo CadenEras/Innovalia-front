@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
-import Cookies from "js-cookie";
 
 export default function Login() {
 	const router = useRouter();
@@ -15,43 +13,46 @@ export default function Login() {
 	const submitForm = async (event) => {
 		event.preventDefault();
 
+		const url = "/api/login";
+		const data = {
+			Per_Email: email,
+			Per_MDP: password
+		};
+
+		const JSONdata = JSON.stringify(data)
+		console.log(data);
+		console.log(JSONdata);
+
+		const option = {
+			method: 'POST',
+			headers: {
+				'Accept': "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSONdata
+		};
+
 		try {
-			const response = await axios.post(
-				"https://51.77.213.191:8000/api/auth/login",
-				{
-					Per_Email: email,
-					Per_MDP: password,
-				},
-				{
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-					},
-				}
-			);
+			const response = await fetch(url, option)
 
 			if (response.status === 200) {
 				console.log(response.data);
 
 				const token = response.data.Per_Token;
+				console.log(response.data.Per_Token);
 				const perm = response.data.user.Per_Permission;
+				console.log(response.data.user.Per_Permission);
 				const userId = response.data.user.Per_Personne_id;
 
-				// console.log('token:', response.data.token);
-				// console.log('perm:', perm);
-				// console.log('userId:', userId);
-				//
-				// Cookies.set('token', token, { expires: 1 }); // This cookie will expire after 1 day
-				// Cookies.set('perm', perm, { expires: 1 }); // This cookie will expire after 1 day
-				// Cookies.set('userId', userId, { expires: 1 }); // This cookie will expire after 1 day
+				await router.push("/");
 
-				if (perm === 2) {
+				/*if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
 				} else if (perm === 1) {
 					await router.push(`/provider/index.js`);
 				} else {
 					await router.push(`/customer/${userId}`);
-				}
+				}*/
 			} else {
 				console.error("Une erreur est survenue lors de la connexion");
 			}

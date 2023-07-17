@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import axios, { post } from "axios";
-//import { getCSRFToken } from "@/getCSRFToken";
 
 export default function Register() {
 	const router = useRouter();
@@ -15,20 +13,6 @@ export default function Register() {
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [birth, setBirth] = useState("");
-
-	/*const getCSRFToken = async () => {
-		const response = await axios.get(
-			"https://51.77.213.191:8000/api/getCSRFToken"
-		);
-		axios.defaults.headers.post["X-CSRF-Token"] = response.data.CSRFToken;
-	};*/
-
-	/*const csrf = await getCSRFToken();
-
-	if (!csrf) {
-		console.error('CSRF token not available');
-		return;
-	}*/
 
 	function formatDate(date) {
 		// Check if date is already in "YYYY-MM-DD" format
@@ -66,12 +50,6 @@ export default function Register() {
 		console.log(data);
 		console.log(JSONdata);
 
-		/*const headers = {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-			//"X-CSRF-TOKEN": csrf,
-		};*/
-
 		const option = {
 		  method: 'POST',
 			headers: {
@@ -83,13 +61,10 @@ export default function Register() {
 
 		try {
 			const response = await fetch(url, option)
-				//axios.post(url, JSONdata, { headers });
 
 			if (response.status === 201) {
 				console.log("Compte créé avec succès :\n\n", response.json());
 				await router.push("/auth/login");
-			} else {
-				console.error("Une erreur est survenue lors de la création du compte");
 			}
 		} catch (error) {
 			console.error(
