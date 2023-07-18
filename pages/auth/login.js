@@ -20,8 +20,6 @@ export default function Login() {
 		};
 
 		const JSONdata = JSON.stringify(data)
-		console.log(data);
-		console.log(JSONdata);
 
 		const option = {
 			method: 'POST',
@@ -40,15 +38,16 @@ export default function Login() {
 				throw new Error(err);
 			}
 
-			//console.log(response.json());
 			const usable = await response.json();
 
-			console.log("API response data", usable);
+			//console.log("API response data", usable);
 
 			if (response.status === 200) {
 				const token = usable.data.token;
 				const perm = usable.data.user.Per_Permission;
 				const userId = usable.data.user.Per_Personne_id;
+
+				localStorage.setItem('token', token);
 
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");

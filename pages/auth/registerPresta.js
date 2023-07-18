@@ -19,10 +19,6 @@ export default function RegisterProvider() {
 	const [tvaIntra, setTvaIntra] = useState("");
 	const [description, setDescription] = useState("");
 	const [typeId, setTypeId] = useState("");
-	const getCSRFToken = async () => {
-		const response = await axios.get("https://51.77.213.191:8000/getCSRFToken");
-		axios.defaults.headers.post["X-CSRF-Token"] = response.data.CSRFToken;
-	};
 
 	function formatDate(date) {
 		// Check if date is already in "YYYY-MM-DD" format

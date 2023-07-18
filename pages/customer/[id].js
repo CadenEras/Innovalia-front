@@ -2,42 +2,43 @@
 
 import React, { useEffect, useState } from "react";
 import Layout from "@/components/layout";
-import Sidebar from "/components/cm-account/sidebar";
-import axios from "axios";
-import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-const Account = () => {
-	const [user, setUser] = useState({});
+export default function Account() {
+	const [user, setUser] = useState(null);
+	const [isLoading, setLoading] = useState(false)
+
+	const token = localStorage.getItem('token');
+
+	const option = {
+		method: 'GET',
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`
+		},
+	};
+
+	const url = "http://51.77.213.191:8000/api/user/profil";
+
+	const fetchData = async () => {
+		try {
+			setLoading(true);
+			const response = await fetch(url, option);
+			const user = await response.json();
+			setUser(user);
+			setLoading(false);
+		} catch (e) {
+			console.log(e);
+		}
+	}
 
 	useEffect(() => {
-		const token = Cookies.get("token"); // Récupérez le token du cookie
-
-		if (token) {
-			axios
-				.get("https://51.77.213.191:8000/api/user/profil", {
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`,
-					},
-				})
-				.then((response) => {
-					setUser(response.data);
-				})
-				.catch((error) => {
-					console.error(
-						"Erreur lors de la récupération des données utilisateur",
-						error
-					);
-				});
-		} else {
-			console.error("Aucun token d'authentification trouvé");
-		}
-	}, []);
-
-	const handlePageChange = (newPage) => {
-		setPage(newPage);
-	};
+			fetchData();
+		},
+		[])
+	if (isLoading) return (<p>Loading...</p>)
+	if (!user) return (<p>No profile data</p>)
 
 	return (
 		<section className='container rounded mt-5 mb-10'>
@@ -47,24 +48,26 @@ const Account = () => {
 			</section>
 			<div className='row'>
 				<div className='col-12 col-md-3 border-right'>
-					<Sidebar onLinkClick={handlePageChange} />
+					{/*<Sidebar onLinkClick={handlePageChange} />*/}
 				</div>
 				<div className='col-12 col-md-9 p-4 border-right'>
 					<div className='p-3 py-5'>
+						<form>
+							@csrf
 						<div className='d-flex justify-content-between align-items-center mb-3'>
 							<h4 className='text-right'>Profil</h4>
 						</div>
 						<div className='row mt-2'>
 							<div className='col-md-6'>
-								<label className='labels'>Prénom</label>
-								<input
+									<label className='labels'>Prénom</label>
+									<input
 									type='text'
 									className='form-control'
 									placeholder='Prénom'
 									value={user.Per_Prenom}
-								/>
-							</div>
-							<div className='col-md-6'>
+									/>
+								</div>
+								<div className='col-md-6'>
 								<label className='labels'>Nom</label>
 								<input
 									type='text'
@@ -84,6 +87,7 @@ const Account = () => {
 									value={user.Per_Email}
 								/>
 							</div>
+
 							{/* et ainsi de suite pour les autres informations utilisateur... */}
 						</div>
 						<div className='mt-5 text-center'>
@@ -94,14 +98,13 @@ const Account = () => {
 								Modifier le profil
 							</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</section>
 	);
 };
-
-export default Account;
 
 Account.getLayout = function getLayout(page) {
 	return <Layout>{page}</Layout>;
