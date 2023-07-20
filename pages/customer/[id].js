@@ -19,7 +19,7 @@ export default function Account() {
 				},
 			};
 
-			const url = "http://51.77.213.191:8000/api/user/profil";
+			const url = "/api/[id]";
 
 			const fetchData = async () => {
 				try {
