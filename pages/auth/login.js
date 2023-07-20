@@ -47,7 +47,7 @@ export default function Login() {
 				const perm = usable.data.user.Per_Permission;
 				const userId = usable.data.user.Per_Personne_id;
 
-				if (typeof window) {
+				if (typeof window!== 'undefined') {
 					if (localStorage !== undefined) {
 						localStorage.setItem('token', token);
 					}

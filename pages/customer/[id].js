@@ -8,47 +8,34 @@ export default function Account() {
 	const [user, setUser] = useState(null);
 	const [isLoading, setLoading] = useState(false)
 
-	if (typeof window) {
-		if (localStorage !== undefined) {
-			const token = localStorage.getItem("token");
+	useEffect(() => {
+			const token = localStorage.getItem('token');
+			const option = {
+				method: 'GET',
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`
+				},
+			};
 
-			if (token != null) {
-				const option = {
-					method: 'GET',
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`
-					},
-				};
+			const url = "http://51.77.213.191:8000/api/user/profil";
 
-				const url = "http://51.77.213.191:8000/api/user/profil";
-
-				const fetchData = async () => {
-					try {
-						setLoading(true);
-						const response = await fetch(url, option);
-						const user = await response.json();
-						setUser(user);
-						setLoading(false);
-					} catch (e) {
-						console.log(e);
-					}
+			const fetchData = async () => {
+				try {
+					setLoading(true);
+					const response = await fetch(url, option);
+					const user = await response.json();
+					setUser(user);
+					setLoading(false);
+				} catch (e) {
+					console.log(e);
 				}
-				// eslint-disable-next-line react-hooks/rules-of-hooks
-				useEffect(() => {
-						fetchData();
-					},
-					[])
-
 			}
-		}
-	}
 
-
-
-
-
+			fetchData();
+		},
+		[])
 	if (isLoading) return (<p>Loading...</p>)
 	if (!user) return (<p>No profile data</p>)
 
