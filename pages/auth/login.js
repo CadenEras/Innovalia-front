@@ -40,8 +40,6 @@ export default function Login() {
 
 			const usable = await response.json();
 
-			console.log("API response data :\n", usable);
-
 			if (response.status === 200) {
 				const token = usable.data.token;
 				const perm = usable.data.user.Per_Permission;
@@ -52,8 +50,6 @@ export default function Login() {
 						localStorage.setItem('token', token);
 					}
 				}
-
-				console.log(token)
 
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
@@ -82,7 +78,7 @@ export default function Login() {
 						>
 							<div className='container pt-5 pb-3 d-flex flex-column align-items-center justify-content-around'>
 								<div className='row pb-3'>
-									<Link href='/admin/index.js'>
+									<Link href='/'>
 										<Image
 											src='/logo_cook_master.png'
 											alt='cook-master logo'

@@ -43,7 +43,7 @@ export default function RegisterProvider() {
 		}
 
 		try {
-			const url = "https://51.77.213.191:8000/api/auth/register/prestataires";
+			const url = "/api/registerPresta";
 			const data = {
 				Per_Dte_Naissance: birth,
 				Per_Email: email,
@@ -57,15 +57,19 @@ export default function RegisterProvider() {
 				Pre_Description: description,
 				Prest_Type_id: typeId,
 			};
-			console.log(data);
 
-			const headers = {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"X-CSRF-TOKEN": getCSRFToken(),
+			const JSONdata = JSON.stringify(data)
+
+			const option = {
+				method: 'POST',
+				headers: {
+					'Accept': "application/json",
+					"Content-Type": "application/json",
+				},
+				body: JSONdata
 			};
 
-			const response = await axios.post(url, data, { headers });
+			const response = await fetch(url, option)
 
 			if (response.status === 201) {
 				console.log("Compte créé avec succès");

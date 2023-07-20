@@ -47,8 +47,6 @@ export default function Register() {
 		};
 
 		const JSONdata = JSON.stringify(data)
-		console.log(data);
-		console.log(JSONdata);
 
 		const option = {
 		  method: 'POST',
@@ -63,8 +61,9 @@ export default function Register() {
 			const response = await fetch(url, option)
 
 			if (response.status === 201) {
-				console.log("Compte créé avec succès :\n\n", response.json());
 				await router.push("/auth/login");
+			} else {
+				console.error("Une erreur est survenue lors de la création du compte");
 			}
 		} catch (error) {
 			console.error(
