@@ -61,14 +61,14 @@ export default function Home() {
 
 	useEffect(() => {
 		// Faites une requête GET à votre API pour récupérer la liste des événements
-		axios
+		/*axios
 			.get("https:///api/event")
 			.then((response) => {
 				setEvents(response.data);
 			})
 			.catch((error) => {
 				console.error("Erreur lors de la récupération des événements:", error);
-			});
+			});*/
 	}, []);
 
 	return (
@@ -77,7 +77,7 @@ export default function Home() {
 			<header className='cm-masthead'>
 				<div className='container'>
 					<div className='cm-masthead-subheading'>
-						<h2>La cuisine n aura plus secret pour vous chez CookMaster</h2>
+						<h1>La cuisine n&apos;aura plus secret pour vous</h1>
 					</div>
 					<Link
 						className='cm-orange-button cm-btn btn-xl text-uppercase'
@@ -88,25 +88,20 @@ export default function Home() {
 				</div>
 			</header>
 			{/* Section de présentation de Cook Master */}
-			<section className='cm-presentation-section'>
+			<section className='cm-presentation-section mt-4 mb-3'>
 				<div className='container'>
-					<h2>CooK MASTER</h2>
-					<p>
-						Fuerit toto in consulatu sine provincia, cui fuerit, antequam
-						designatus est, decreta provincia. Sortietur an non? Nam et non
-						sortiri absurdum est, et, quod sortitus sis, non habere.
-						Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non
-						licebit. ianuario, Februario, provinciam non habebit; Kalendis ei
-						denique Martiis nascetur repente provincia.
+					<h2 className='mb-3'>Découvrez votre talent pour la cuisine avec Cook Master !</h2>
+					<p className='text-center'>
+						Bienvenue sur Cook-Master, votre destination ultime pour explorer le monde culinaire et développer vos compétences en cuisine comme jamais auparavant ! Plongez dans nos formations interactives, conçues par des chefs experts, et découvrez les secrets des recettes les plus délicieuses et des techniques les plus raffinées. Que vous soyez un débutant enthousiaste ou un passionné de longue date, notre plateforme conviviale vous guidera pas à pas vers l&apos;excellence culinaire. Rejoignez-nous dès aujourd&apos;hui et faites de chaque repas un véritable chef-d&apos;œuvre gastronomique !
 					</p>
 				</div>
 			</section>
 			{/* Section des événements */}
-			<section className='cm-event-section'>
+			<section className='cm-event-section mt-4 mb-3'>
 				<div className='container'>
-					<h2>Événements</h2>
+					<h2 className='mb-3'>Événements</h2>
 					<div className='cm-event-grid'>
-						{events.map((event) => (
+						{/*{events.map((event) => (
 							<div className='cm-event' key={event.id}>
 								<div className='cm-event-title'>{event.name}</div>
 								<div className='cm-event-description'>
@@ -114,14 +109,14 @@ export default function Home() {
 								</div>
 								<Link href={`/event/${event.id}`}>Voir les détails</Link>
 							</div>
-						))}
+						))}*/}
 					</div>
 				</div>
 			</section>
 			{/* Section de présentation de nos sites*/}
-			<section className='cm-site-section'>
+			<section className='cm-site-section mt-4 mb-3'>
 				<div className='container'>
-					<h2>Nos sites</h2>
+					<h2 className='mb-3'>Nos sites</h2>
 					<SiteGrid sites={cm_location} />
 				</div>
 			</section>
