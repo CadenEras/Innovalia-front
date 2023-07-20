@@ -2,32 +2,45 @@
 
 import React, { useEffect, useState } from "react";
 import Layout from "@/components/layout";
-import { useRouter } from "next/router";
 
 export default function Account() {
 	const [user, setUser] = useState(null);
+	/*const [email, setEmail] = useState(null); // État pour l'email
+	const [nom, setNom] = useState(null);
+	const [prenom, setPrenom] = useState(null);*/
+
 	const [isLoading, setLoading] = useState(false)
 
 	useEffect(() => {
 			const token = localStorage.getItem('token');
 			const option = {
-				method: 'GET',
+				method: "GET",
 				headers: {
 					Accept: "application/json",
 					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`
+					Authorization : `Bearer ` + token,
 				},
 			};
 
-			const url = "/api/[id]";
+			const url = "/api/profil";
 
 			const fetchData = async () => {
+
 				try {
 					setLoading(true);
 					const response = await fetch(url, option);
-					const user = await response.json();
-					setUser(user);
-					setLoading(false);
+
+					if (response.status === 401) {
+						return (response)
+					} else {
+						const usable = await response.json();
+						setUser(usable.data);
+						/*setNom(usable.data.Per_Nom);
+						setPrenom(usable.data.Per_Prenom);
+						setUser(usable.data.Per_Email);*/
+						setLoading(false);
+						console.log(usable)
+					}
 				} catch (e) {
 					console.log(e);
 				}
@@ -51,8 +64,7 @@ export default function Account() {
 				</div>
 				<div className='col-12 col-md-9 p-4 border-right'>
 					<div className='p-3 py-5'>
-						<form>
-							@csrf
+
 						<div className='d-flex justify-content-between align-items-center mb-3'>
 							<h4 className='text-right'>Profil</h4>
 						</div>
@@ -62,8 +74,11 @@ export default function Account() {
 									<input
 									type='text'
 									className='form-control'
-									placeholder='Prénom'
+									placeholder={user.Per_Prenom}
 									value={user.Per_Prenom}
+									defaultValue={user.Per_Prenom}
+									readOnly={true}
+									/*onChange={(e) => setPrenom(e.target.value)}*/
 									/>
 								</div>
 								<div className='col-md-6'>
@@ -72,7 +87,9 @@ export default function Account() {
 									type='text'
 									className='form-control'
 									value={user.Per_Nom}
-									placeholder='user.Per_Nom'
+									readOnly={true}
+									/*onChange={(e) => setNom(e.target.value)}*/
+									placeholder={user.Per_Nom}
 								/>
 							</div>
 						</div>
@@ -82,8 +99,10 @@ export default function Account() {
 								<input
 									type='email'
 									className='form-control'
-									placeholder='email'
+									placeholder={user.Per_Email}
 									value={user.Per_Email}
+									readOnly={true}
+									/*onChange={(e) => setEmail(e.target.value)}*/
 								/>
 							</div>
 
@@ -97,7 +116,7 @@ export default function Account() {
 								Modifier le profil
 							</button>
 						</div>
-						</form>
+
 					</div>
 				</div>
 			</div>

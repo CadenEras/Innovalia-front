@@ -35,12 +35,12 @@ export default function Login() {
 
 			if (!response.ok) {
 				const err = await response.text();
-				throw new Error(err);
+				return( err)
 			}
 
 			const usable = await response.json();
 
-			//console.log("API response data", usable);
+			console.log("API response data :\n", usable);
 
 			if (response.status === 200) {
 				const token = usable.data.token;
@@ -53,6 +53,8 @@ export default function Login() {
 					}
 				}
 
+				console.log(token)
+
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
 				} else if (perm === 1) {
@@ -60,11 +62,11 @@ export default function Login() {
 				} else {
 					await router.push(`/customer/${userId}`);
 				}
-			} else {
+			} else  {
 				console.error("Une erreur est survenue lors de la connexion");
 			}
 		} catch (error) {
-			console.error("Une erreur est survenue lors de la connexion", error);
+			console.error(error);
 		}
 	};
 

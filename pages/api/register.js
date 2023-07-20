@@ -2,35 +2,26 @@
 
 const axios = require('axios');
 
-/*module.exports = async (req, res) => {
-	try {
-		//http://51.77.213.191:8000/api/auth/register
-		const response = await axios.post('https://api.cook-master.fr/api/register', req.body);
-
-		res.status(response.status).json(response.data);
-	} catch (error) {
-		res.status(500).json({ error: 'An error occurred during the registration process.' });
-	}
-};*/
-
 export default async function handler(req, res) {
-	// Get data submitted in request's body.
 	const body = req.body
+	const headers = req.headers
 
-	// Optional logging to see the responses
-	// in the command line where next.js app is running.
-	console.log('body: ', body)
+	console.log(body)
+	console.log(headers)
 
-	// Guard clause checks for first and last name,
-	// and returns early if they are not found
 	if (!body) {
-		// Sends a HTTP bad request error code
-		return res.status(400).json({ data: 'body not found' })
+		return res.status(400).json({ data: 'Body not found' })
 	}
 
-	// Found the name.
-	// Sends an HTTP success code
-	//http://51.77.213.191:8000/api/auth/register
-	const response = await axios.post('http://51.77.213.191:8000/api/auth/register', req.body);
-	return res.status(response.status).json({ data: response.data })
+	if (!headers) {
+		return res.status(406).json({ data: 'Not acceptable' })
+	}
+
+	const response = await axios.post('http://51.77.213.191:8000/api/auth/register', body, headers);
+
+	if (response.status === 200) {
+		return res.status(response.status).json({ data: response.data})
+	} else {
+		return res.status(response.status).json({ data: response.data?response.data : 'No data error available...' })
+	}
 }
