@@ -47,7 +47,11 @@ export default function Login() {
 				const perm = usable.data.user.Per_Permission;
 				const userId = usable.data.user.Per_Personne_id;
 
-				localStorage.setItem('token', token);
+				if (typeof window) {
+					if (localStorage !== undefined) {
+						localStorage.setItem('token', token);
+					}
+				}
 
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
