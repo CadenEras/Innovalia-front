@@ -90,7 +90,7 @@ export default function Home() {
 			{/* Section de présentation de Cook Master */}
 			<section className='cm-presentation-section mt-4 mb-3'>
 				<div className='container'>
-					<h2 className='mb-3'>Découvrez votre talent pour la cuisine avec Cook Master !</h2>
+					<h2 className='mb-3 text-center'>Découvrez votre talent pour la cuisine avec Cook Master !</h2>
 					<p className='text-center'>
 						Bienvenue sur Cook-Master, votre destination ultime pour explorer le monde culinaire et développer vos compétences en cuisine comme jamais auparavant ! Plongez dans nos formations interactives, conçues par des chefs experts, et découvrez les secrets des recettes les plus délicieuses et des techniques les plus raffinées. Que vous soyez un débutant enthousiaste ou un passionné de longue date, notre plateforme conviviale vous guidera pas à pas vers l&apos;excellence culinaire. Rejoignez-nous dès aujourd&apos;hui et faites de chaque repas un véritable chef-d&apos;œuvre gastronomique !
 					</p>

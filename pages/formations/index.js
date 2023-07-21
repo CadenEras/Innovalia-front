@@ -27,14 +27,16 @@ const Formations = ({ formations }) => {
 
 			<section className={"cm-formation-body"}>
 				<h2>Formations</h2>
-				<ActivityGrid activities={formations} type='formations' />
+				<br/>
+				<h4>Page en cours de construction ! revenez plus tard !</h4>
+				{/*<ActivityGrid activities={formations} type="formations" />*/}
 			</section>
 		</main>
 	);
 };
 
-export async function getServerSideProps(context) {
-	const res = await axios.get("http://51.77.213.191:8000/api/formations");
+/*export async function getServerSideProps(context) {
+	//const res = await fetch("/api/provider/formations/indexage");
 	// Si aucune formation n'est trouvée, renvoyer une erreur 404
 	if (!res.data) {
 		return {
@@ -53,7 +55,7 @@ export async function getServerSideProps(context) {
 	return {
 		props: { formations }, // will be passed to the page component as props
 	};
-}
+}*/
 
 Formations.getLayout = function getLayout(page) {
 	return <Layout>{page}</Layout>;

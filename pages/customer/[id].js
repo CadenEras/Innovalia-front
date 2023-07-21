@@ -35,9 +35,6 @@ export default function Account() {
 					} else {
 						const usable = await response.json();
 						setUser(usable.data);
-						/*setNom(usable.data.Per_Nom);
-						setPrenom(usable.data.Per_Prenom);
-						setUser(usable.data.Per_Email);*/
 						setLoading(false);
 						console.log(usable)
 					}

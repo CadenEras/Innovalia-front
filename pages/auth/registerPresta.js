@@ -48,8 +48,6 @@ export default function RegisterProvider() {
 				Per_Email: email,
 				Per_MDP: password,
 				Per_MDP_confirmation: passwordConfirm,
-				Per_Nom: lastName,
-				Per_Prenom: firstName,
 				Pre_SIRET: siret,
 				Per_APE: ape,
 				Per_TVA_Intra: tvaIntra,
@@ -62,7 +60,7 @@ export default function RegisterProvider() {
 			const option = {
 				method: 'POST',
 				headers: {
-					'Accept': "application/json",
+					Accept: "application/json",
 					"Content-Type": "application/json",
 				},
 				body: JSONdata

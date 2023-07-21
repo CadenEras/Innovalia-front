@@ -20,7 +20,7 @@ const SidebarAdmin = () => {
 		<div
 			style={{
 				width: "250px",
-				height: "100vh",
+				height: "50vh",
 				backgroundColor: "#f5f5f5",
 				position: "fixed",
 			}}
@@ -33,30 +33,30 @@ const SidebarAdmin = () => {
 					height='120'
 				/>
 			</Link>
-			<h3>Dashboard Admin</h3>
+			<h3>Dashboard</h3>
 			<ul style={{ listStyleType: "none", padding: 0 }}>
 				<li style={{ padding: "10px 0" }}>
 					<Button onClick={() => toggleList("formations")}>
-						Manage Formations
+						Vos formations
 					</Button>
 					{activeList === "formations" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href='/admin/formations/cm-create-form'
+									href='/provider/formations/cm-create-form'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
-									Create Formation
+									Créer formation
 								</Link>
 							</li>
 							<li>
 								<Link
-									href='/admin/formations/index'
+									href='/provider/formations/index'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
-									List Formations
+									Liste des formations
 								</Link>
 							</li>
 						</ul>
@@ -67,78 +67,26 @@ const SidebarAdmin = () => {
 						className='nav-link active'
 						onClick={() => toggleList("events")}
 					>
-						Manage Events
+						Évènements
 					</Button>
 					{activeList === "events" && (
 						<ul style={{ listStyleType: "none", padding: 0 }}>
 							<li>
 								<Link
-									href='/admin/events/create'
+									href='/provider/'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
-									Create Event
+									Créer évènement
 								</Link>
 							</li>
 							<li>
 								<Link
-									href='/admin/events/list'
+									href='/provider/'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>
-									List Events
-								</Link>
-							</li>
-						</ul>
-					)}
-				</li>
-				<li style={{ padding: "10px 0" }}>
-					<Button onClick={() => toggleList("subscriptions")}>
-						Manage Subscriptions
-					</Button>
-					{activeList === "subscriptions" && (
-						<ul style={{ listStyleType: "none", padding: 0 }}>
-							<li>
-								<Link
-									href='/admin/subscriptions/create'
-									className='nav-link active pt-2'
-									aria-current='page'
-								>
-									Create Subscription
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/admin/subscriptions/list'
-									className='nav-link active pt-2'
-									aria-current='page'
-								>
-									List Subscriptions
-								</Link>
-							</li>
-						</ul>
-					)}
-				</li>
-				<li style={{ padding: "10px 0" }}>
-					<Button onClick={() => toggleList("sites")}>Manage Sites</Button>
-					{activeList === "sites" && (
-						<ul style={{ listStyleType: "none", padding: 0 }}>
-							<li>
-								<Link
-									href='/admin/sites/create'
-									className='nav-link active pt-2'
-									aria-current='page'
-								>
-									Create Site
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/admin/sites/list'
-									className='nav-link active pt-2'
-									aria-current='page'
-								>
-									List Site
+									Liste des évènements
 								</Link>
 							</li>
 						</ul>

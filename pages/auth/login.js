@@ -54,7 +54,7 @@ export default function Login() {
 				if (perm === 2) {
 					await router.push("/admin/cm-create-form.js");
 				} else if (perm === 1) {
-					await router.push(`/provider/index.js`);
+					await router.push(`/provider/${userId}`);
 				} else {
 					await router.push(`/customer/${userId}`);
 				}

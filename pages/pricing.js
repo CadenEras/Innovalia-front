@@ -4,69 +4,69 @@ import React from "react";
 import Layout from "@/components/layout";
 import { loadStripe } from "@stripe/stripe-js";
 
-// Assurez-vous d'utiliser votre propre clé public de Stripe
-const stripePromise = loadStripe(
-	"pk_test_51NKml4AnSnFZrpbO3zbvhROlQYAawzqbnSKwpIQrcdll4HVrsS9XV43fKsXUqZR2FLj9hiuPvpOxFyvomrdK729n00LAXKRcyg"
-);
-
-async function handleSubscribe(planId) {
-	const stripe = await stripePromise;
-
-	const response = await fetch("/api/create-checkout-session", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ planId }),
-	});
-
-	const session = await response.json();
-
-	const result = await stripe.redirectToCheckout({
-		sessionId: session.id,
-	});
-
-	if (result.error) {
-		alert(result.error.message);
-	}
-}
-
 function PricingPage() {
 	return (
-		<div>
-			<h1>Nos Offres</h1>
-			<p>Choisissez offre qui vous convient le mieux</p>
-
-			<div>
-				<h2>Forfait Master</h2>
-				<p>19€ / mois ou 220€ / an</p>
-				<ul>
-					<li>Commenter, publier des avis</li>
-					<li>Accès aux leçons en illimité</li>
-				</ul>
-				<button onClick={() => handleSubscribe("master")}>Souscrire</button>
+		<div className='container py-3'>
+			<div className='p-3 pb-md-4 mx-auto text-center'>
+				<h1 className='display-4 fw-normal'>Nos Offres</h1>
+				<p className='fs-5'>Choisissez l&apos;offre qui vous convient le mieux.</p>
 			</div>
-
-			<div>
-				<h2>Forfait Starter</h2>
-				<p>9,90€ / mois ou 113€ / an</p>
-				<ul>
-					<li>Commenter, publier des avis</li>
-					<li>Accès aux leçons : 5 par jour</li>
-				</ul>
-				<button onClick={() => handleSubscribe("starter")}>Souscrire</button>
+			<div className='row row-cols-1 row-cols-md-3 mb-3 text-center'>
+				<div className='col'>
+					<div className='card mb-4 rounded-3 shadow-sm'>
+						<div className='card-header py-3'>
+							<h4 className='my-0 fw-normal'>Forfait Master</h4>
+						</div>
+						<div className='card-body'>
+							<h1 className='card-title'>
+								19.00€
+								<small>/mois ou 220€/an</small>
+							</h1>
+							<ul className='list-unstyled mt-3 mb-4'>
+								<li>Commenter, publier des avis</li>
+								<li>Accès aux leçons en illimité</li>
+							</ul>
+							<button type='button' className='cm-btn'>Souscrire</button>
+						</div>
+					</div>
+				</div>
+					<div className='col'>
+						<div className='card mb-4 rounded-3 shadow-sm'>
+							<div className='card-header py-3'>
+								<h4 className='my-0 fw-normal'>Forfait Starter</h4>
+							</div>
+							<div className='card-body'>
+								<h1 className='card-title'>
+									9,90€
+									<small>/mois ou 113€/an</small>
+								</h1>
+								<ul className='list-unstyled mt-3 mb-4'>
+									<li>Commenter, publier des avis</li>
+									<li>Accès aux leçons : 5 par jour</li>
+								</ul>
+								<button type='button' className='cm-btn'>Souscrire</button>
+							</div>
+						</div>
+					</div>
+						<div className='col'>
+							<div className='card mb-4 rounded-3 shadow-sm'>
+								<div className='card-header py-3'>
+									<h4 className='my-0 fw-normal'>Forfait Free</h4>
+								</div>
+								<div className='card-body'>
+									<h1 className='card-title'>
+										0.00€
+									</h1>
+									<ul className='list-unstyled mt-3 mb-4'>
+										<li>Présence de publicités dans le contenu</li>
+										<li>Commenter, publier des avis</li>
+									</ul>
+									<button type='button' className='cm-btn'>Souscrire</button>
+								</div>
+							</div>
+						</div>
+				</div>
 			</div>
-
-			<div>
-				<h2>Forfait Free</h2>
-				<p>Gratuit</p>
-				<ul>
-					<li>Présence de publicités dans le contenu</li>
-					<li>Commenter, publier des avis</li>
-				</ul>
-				<button onClick={() => handleSubscribe("free")}>Souscrire</button>
-			</div>
-		</div>
 	);
 }
 
