@@ -117,6 +117,7 @@ console.log(formation)
 export async function getServerSideProps({ params }) {
 	const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 	console.log(params.id)
+	console.log(baseUrl)
 	const url = `${baseUrl}/api/formations/${params.id}`;
 	const option = {
 		method: 'GET',
