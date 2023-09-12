@@ -4,18 +4,13 @@ const axios = require('axios');
 
 export default async function handler(req, res) {
 	try {
-		const body = req.body
 		const headers = req.headers
-
-		if (!body) {
-			return res.status(400).json({ data: 'Bad Request error: The request is invalid.' })
-		}
 
 		if (!headers) {
 			return res.status(406).json({ data: 'Not Acceptable error: Server cannot produce a response matching the list of acceptable values.' })
 		}
 
-		const response = await axios.post('http://51.77.213.191:8000/api/auth/register', body, { headers });
+		const response = await axios.get('http://51.77.213.191:8000/api/cm/formations', { headers });
 		// Handle successful response
 		return res.status(response.status).json({ data: response.data})
 	} catch (error) {

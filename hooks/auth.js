@@ -1,6 +1,6 @@
 /**@format*/
 
-import useSWR from "swr";
+/*import useSWR from "swr";
 import axios from "axios";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -97,7 +97,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 					.then(response => setStatus(response.data.status))
 		}*/
 
-	const logout = async () => {
+	/*const logout = async () => {
 		if (!error) {
 			await axios.post("/auth/logout").then(() => mutate());
 		}
@@ -129,4 +129,4 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 		//resendEmailVerification,
 		logout,
 	};
-};
+};*/

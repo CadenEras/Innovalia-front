@@ -3,28 +3,30 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Link from "next/link";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { useCookies } from "react-cookie";
 
-export default function Navbar({ onLogout }) {
-	const [cookies] = useCookies(["token"]);
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [userId, setUserId] = useState(null);
-	const [userPerm, setUserPerm] = useState("");
+export default function Navbar() {
+	const { data: session, status } = useSession()
+	const loading = status === "loading"
+	const router = useRouter();
+	const [profileLink, setProfileLink] = useState(null);
 
 	useEffect(() => {
-		setIsAuthenticated(!!cookies.token);
-		setUserPerm(cookies.userPerm);
-		// setUserId( /* your function to get userId */);
-	}, [cookies.token, cookies.userPerm]);
+		if (session?.user) {
+			console.log(session.user.userPerm);
+			console.log(session.user.userId);
+			if (session.user.userPerm === 2) {
+				setProfileLink(`/admin/index.js`);
+			} else if (session.user.userPerm === 1) {
+				setProfileLink(`/provider/${session.user.userId}`);
+			} else {
+				setProfileLink(`/customer/${session.user.userId}`);
+			}
+		}
+	}, [session]);
 
-	let profileLink = `/customer/${userId}`;
-	if (userPerm === "2") {
-		profileLink = `/admin/index.js`;
-	} else if (userPerm === "1") {
-		profileLink = `/provider/index.js`;
-	}
 	return (
 		<div>
 			<nav className='cm-navbar navbar-expand-xl bg-body'>
@@ -104,32 +106,32 @@ export default function Navbar({ onLogout }) {
 						</ul>
 					</div>
 					<div className='cm-d-none-lg'>
-						{isAuthenticated ? (
+						{session?.user && (
 							<>
 								<Link
 									className='cm-link-nav nav-link'
-									onClick={() => {
-										Cookies.remove("token");
-										setIsAuthenticated(false);
-									}}
+									onClick={() => {signOut({callbackUrl: '/'})}}
 									href='/'
 								>
 									Déconnexion
 								</Link>
-								<Link className='d-inline' href={profileLink}>
-									<Image
-										src='/default_profil_pict.png'
-										id='cm-header-profile-picture'
-										alt='profilePhoto'
-										className='cm-avatar img-responsive'
-										width='32'
-										height='32'
-									/>
-								</Link>
+								{profileLink && (
+									<Link href={`${profileLink}`}>
+											<Image
+												src='/default_profil_pict.png'
+												id='cm-header-profile-picture'
+												alt='profilePhoto'
+												className='cm-avatar img-responsive'
+												width='32'
+												height='32'
+											/>
+									</Link>
+								)}
 							</>
-						) : (
+						)}
+						{!session && (
 							<>
-								<Link className='cm-link-nav nav-link' href='/auth/login'>
+								<Link className='cm-link-nav nav-link' href='/auth/login' >
 									Connexion
 								</Link>
 								<Link className='cm-link-nav nav-link' href='/auth/register'>

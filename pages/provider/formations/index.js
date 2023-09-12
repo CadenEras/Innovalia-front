@@ -1,7 +1,6 @@
 /**@format*/
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import FormationCardAdmin from "@/components/cm-admin/FormationcardAdmin";
 import Pagination from "@/components/Pagination";
 

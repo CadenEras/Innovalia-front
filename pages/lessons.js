@@ -127,57 +127,55 @@ const LessonsPage = () => {
 	];
 
 	return (
-		<main>
-			{/* En-tête de la page */}
-			<header className='cm-header'>
-				<div className='cm-header-lessons-container'>
-					<div>
-						<em>Atelier culinaire </em>
+		<Layout>
+			<main>
+				{/* En-tête de la page */}
+				<header className='cm-header'>
+					<div className='cm-header-lessons-container'>
+						<div>
+							<em>Atelier culinaire </em>
+						</div>
 					</div>
-				</div>
-			</header>
-			{/* Section des leçons de cuisine en ligne */}
-			<section className='cm-cooking-lesson-section' id='cooking-lesson'>
-				<div className='container'>
-					<div className='text-center'>
-						<h2 className='cm-title-section'>Leçons de cuisine en ligne</h2>
-						<h3 className='description-section'>
-							Apprenez à cuisiner en ligne avec nos chefs experts.
-						</h3>
+				</header>
+				{/* Section des leçons de cuisine en ligne */}
+				<section className='cm-cooking-lesson-section' id='cooking-lesson'>
+					<div className='container'>
+						<div className='text-center'>
+							<h2 className='cm-title-section'>Leçons de cuisine en ligne</h2>
+							<h3 className='description-section'>
+								Apprenez à cuisiner en ligne avec nos chefs experts.
+							</h3>
+						</div>
+						<ActivityGrid activities={leconsEnLigne} />
 					</div>
-					<ActivityGrid activities={leconsEnLigne} />
-				</div>
-			</section>
-			{/* Section des témoignages */}
-			<section className='cm-testimonials-section' id='temoignages'>
-				<div className='container'>
-					<h2 className='cm-title-section'>Témoignages</h2>
-					<div className='cm-testimonials-grid'>
-						{temoignages.map((temoignage, index) => (
-							<div className='cm-testimonial' key={index}>
-								<Image
-									src={temoignage.photo}
-									alt={temoignage.nom}
-									className='cm-testimonial-photo'
-									width={100}
-									height={100}
-								/>
-								<h3 className='cm-testimonial-name'>{temoignage.nom}</h3>
-								<p className='cm-testimonial-message'>{temoignage.message}</p>
-								{temoignage.ville && (
-									<p className='cm-testimonial-city'>{temoignage.ville}</p>
-								)}
-							</div>
-						))}
+				</section>
+				{/* Section des témoignages */}
+				<section className='cm-testimonials-section' id='temoignages'>
+					<div className='container'>
+						<h2 className='cm-title-section'>Témoignages</h2>
+						<div className='cm-testimonials-grid'>
+							{temoignages.map((temoignage, index) => (
+								<div className='cm-testimonial' key={index}>
+									<Image
+										src={temoignage.photo}
+										alt={temoignage.nom}
+										className='cm-testimonial-photo'
+										width={100}
+										height={100}
+									/>
+									<h3 className='cm-testimonial-name'>{temoignage.nom}</h3>
+									<p className='cm-testimonial-message'>{temoignage.message}</p>
+									{temoignage.ville && (
+										<p className='cm-testimonial-city'>{temoignage.ville}</p>
+									)}
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
-			</section>
-		</main>
+				</section>
+			</main>
+		</Layout>
 	);
 };
 
 export default LessonsPage;
-
-LessonsPage.getLayout = function getLayout(page) {
-	return <Layout>{page}</Layout>;
-};

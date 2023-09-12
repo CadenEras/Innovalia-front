@@ -1,15 +1,14 @@
 /**@format*/
 
 import Footer from "./footer";
-import AppWrapper from "./AppWrapper";
+import Navbar from "./navbar";
 
 export default function Layout({ children }) {
 	return (
 		<>
-			<AppWrapper>
-				<main>{children}</main>
-				<Footer />
-			</AppWrapper>
+			<Navbar />
+			<main>{children}</main>
+			<Footer />
 		</>
 	);
 }

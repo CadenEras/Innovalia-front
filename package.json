@@ -14,8 +14,8 @@
     "Melissa GRIES (CadenEras)"
   ],
   "engines": {
-    "node": ">=18.16.0",
-    "npm": ">=9.5.1"
+    "node": ">=18.12.0",
+    "npm": ">=8.10.0"
   },
   "main": "pages/index.js",
   "private": false,
@@ -41,10 +41,12 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "formik": "^2.4.2",
     "js-cookie": "^3.0.5",
     "laravel-vite-plugin": "^0.7.2",
     "moment": "^2.29.4",
     "next": "^13.4.1",
+    "next-auth": "^4.22.3",
     "prettier": "^2.8.8",
     "prettier-eslint": "^15.0.1",
     "react": "18.2.0",
@@ -59,6 +61,7 @@
     "swr": "^2.2.0",
     "use-sound": "^4.0.1",
     "validator": "^13.9.0",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "yup": "^1.2.0"
   }
 }

@@ -7,12 +7,26 @@ import { useRouter } from "next/router";
 
 export default function Register() {
 	const router = useRouter();
-	const [email, setEmail] = useState("");
+	/*const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [birth, setBirth] = useState("");
+	const [birth, setBirth] = useState("");*/
+	const [formData, setFormData] = useState({
+		email: "",
+		lastName: "",
+		firstName: "",
+		password: "",
+		passwordConfirm: "",
+		birth: "",
+	});
+	const [error, setError] = useState("");
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setFormData({ ...formData, [name]: value });
+	};
 
 	function formatDate(date) {
 		// Check if date is already in "YYYY-MM-DD" format
@@ -25,25 +39,26 @@ export default function Register() {
 
 	const handleBirthChange = (event) => {
 		let formattedDate = formatDate(event.target.value);
-		setBirth(formattedDate);
+		setFormData({ ...formData, birth: formattedDate });
 	};
 
 	const submitForm = async (event) => {
 		event.preventDefault();
 
-		if (password !== passwordConfirm) {
+		if (formData.password !== formData.passwordConfirm) {
+			setError("Les mots de passe ne correspondent pas");
 			console.error("Les mots de passe ne correspondent pas");
 			return;
 		}
 
 		const url = "/api/register";
 		const data = {
-			Per_Dte_Naissance: birth,
-			Per_Email: email,
-			Per_MDP: password,
-			Per_MDP_confirmation: passwordConfirm,
-			Per_Nom: lastName,
-			Per_Prenom: firstName,
+			Per_Dte_Naissance: formData.birth,
+			Per_Email: formData.email,
+			Per_MDP: formData.password,
+			Per_MDP_confirmation: formData.passwordConfirm,
+			Per_Nom: formData.lastName,
+			Per_Prenom: formData.firstName,
 		};
 
 		const JSONdata = JSON.stringify(data)
@@ -64,12 +79,14 @@ export default function Register() {
 				await router.push("/auth/login");
 			} else {
 				console.error("Une erreur est survenue lors de la création du compte");
+				setError(data.message || "Une erreur est survenue lors de la création du compte");
 			}
 		} catch (error) {
 			console.error(
 				"Une erreur est survenue lors de la création du compte\n",
 				error
 			);
+			setError("Une erreur est survenue lors de la création du compte");
 		}
 	};
 
@@ -83,6 +100,9 @@ export default function Register() {
 							id='register'
 							className='cm-theme-bg cm-theme-text rounded my-5 align-self-center col-10 offset-1 col-md-8 offset-md-2'
 						>
+							{error && (
+								<p style={{ color: "red" }}>{error}</p>
+							)}
 							<div className='container pt-5 pb-3 d-flex flex-column align-items-center justify-content-around'>
 								<div className='row pb-3'>
 									<Link href='/'>

@@ -3,61 +3,76 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/layout";
-import axios from "axios";
 import SidebarAdmin from "@/components/cm-admin/SidebarAdmin";
-//import ServiceManagement from '@/components/ServiceManagement';
+import { useSession } from "next-auth/react";
 
 const ProviderDashboard = () => {
 	const router = useRouter();
 	const [user, setUser] = useState(null);
 	const [isLoading, setLoading] = useState(false)
+	const { data: session, status } = useSession();
+
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-		const option = {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				Authorization : `Bearer ` + token,
-			},
-		};
+		if (status === "authenticated") {
+			const token = session?.user?.accessToken;
+			console.log("Token in profile:", token);
+			const option = {
+				method: "GET",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization : `Bearer ` + token,
+				},
+			};
 
-		const url = "/api/profilPresta";
+			const url = "/api/profilPresta";
 
-		const fetchData = async () => {
+			const fetchData = async () => {
+				try {
+					setLoading(true);
+					const response = await fetch(url, option);
 
-			try {
-				setLoading(true);
-				const response = await fetch(url, option);
+					if (response.status === 401) {
+						// Handle unauthorized access
+						setLoading(false);
+						setUser(null);
+						console.log("Unauthorized access to profile data");
+						return;
+					}
 
-				if (response.status === 401) {
-					return (response)
-				} else {
+					if (!response.ok) {
+						// Handle other errors
+						setLoading(false);
+						setUser(null);
+						console.log("Error fetching profile data");
+						return;
+					}
+
 					const usable = await response.json();
 					setUser(usable.data);
 					setLoading(false);
-					console.log(usable)
+					console.log("Data in profile:", usable);
+				} catch (e) {
+					setLoading(false);
+					setUser(null);
+					console.log("Error fetching profile data:" + e);
 				}
-			} catch (e) {
-				console.log(e);
-			}
+			};
+			fetchData();
 		}
+	}, [session, status]);
 
-		fetchData();
-	}, [router]);
-
-	/*if (isLoading) return (<p>Loading...</p>)
-	if (!user) return (<p>No profile data</p>)*/
+	if (isLoading) return (<p>Loading...</p>)
+	if (!user) return (<p>No profile data</p>)
 
 	return (
 		<Layout>
 			<section className='container rounded mt-5 mb-10'>
 				<section>
-					<h1>Bonjour !</h1>
-					{/* Ici, ajoutez les détails de l'abonnement de l'utilisateur */}
+					<h1>Bonjour {user.Per_Prenom} !</h1>
 				</section>
-				<SidebarAdmin></SidebarAdmin>
+				<SidebarAdmin />
 				<div className='row'>
 					<div className='col-12 col-md-3 border-right'>
 						{/*<Sidebar onLinkClick={handlePageChange} />*/}
@@ -74,11 +89,10 @@ const ProviderDashboard = () => {
 									<input
 										type='text'
 										className='form-control'
-										placeholder="{user.Per_Prenom}"
-										value="{user.Per_Prenom}"
-										defaultValue="{user.Per_Prenom}"
+										placeholder={user.Per_Prenom}
+										value={user.Per_Prenom}
+										defaultValue={user.Per_Prenom}
 										readOnly={true}
-										/*onChange={(e) => setPrenom(e.target.value)}*/
 									/>
 								</div>
 								<div className='col-md-6'>
@@ -86,10 +100,9 @@ const ProviderDashboard = () => {
 									<input
 										type='text'
 										className='form-control'
-										value="{user.Per_Nom}"
+										value={user.Per_Nom}
 										readOnly={true}
-										/*onChange={(e) => setNom(e.target.value)}*/
-										placeholder="{user.Per_Nom}"
+										placeholder={user.Per_Nom}
 									/>
 								</div>
 							</div>
@@ -99,14 +112,11 @@ const ProviderDashboard = () => {
 									<input
 										type='email'
 										className='form-control'
-										placeholder="{user.Per_Email}"
-										value="{user.Per_Email}"
+										placeholder={user.Per_Email}
+										value={user.Per_Email}
 										readOnly={true}
-										/*onChange={(e) => setEmail(e.target.value)}*/
 									/>
 								</div>
-
-								{/* et ainsi de suite pour les autres informations utilisateur... */}
 							</div>
 							<div className='mt-5 text-center'>
 								<button

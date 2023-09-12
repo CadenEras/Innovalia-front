@@ -3,6 +3,8 @@
 import { useRouter } from "next/router";
 import axios from "axios";
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
+import Layout from "@/components/layout";
 
 // Composant ChampSaisie
 const ChampSaisie = ({ label, value, onChange, placeholder }) => (
@@ -14,23 +16,23 @@ const ChampSaisie = ({ label, value, onChange, placeholder }) => (
 				className='form-control'
 				value={value}
 				onChange={onChange}
-				placeholder={placeholder}
+				placeholder={placeholder || ''} // Use placeholder or an empty string as the default
 			/>
 		</div>
 	</div>
 );
 
-const FormationPage = ({ formation }) => {
+export default function FormationPage ({ formation }) {
+	const { data: session } = useSession()
 	const router = useRouter();
-	const [intitule, setIntitule] = useState(formation.For_Intitule);
-	const [description, setDescription] = useState(formation.For_Description);
-	const [tarif, setTarif] = useState(formation.For_Tarif_HT);
-	const [duree, setDuree] = useState(formation.For_Duree);
-	const [typeIntitule, setTypeIntitule] = useState(formation.For_Type_Intitule);
+	const [intitule, setIntitule] = useState(formation.data.For_Intitule);
+	const [description, setDescription] = useState(formation.data.For_Description);
+	const [tarif, setTarif] = useState(formation.data.For_Tarif_HT);
+	const [duree, setDuree] = useState(formation.data.For_Duree);
 	const [typeFormation, setTypeFormation] = useState(
-		formation.For_Type_Formation
+		formation.data.Fort_Type_id
 	);
-
+console.log(formation)
 	const handleEdit = async () => {
 		try {
 			// Effectuer une requête PUT pour mettre à jour la formation
@@ -63,64 +65,59 @@ const FormationPage = ({ formation }) => {
 	};
 
 	return (
-		<div>
-			<div
-				style={{ width: "400px", height: "300px", backgroundColor: "#f5f5f5" }}
-			>
-				<h2>Formation details</h2>
-				<ChampSaisie
-					label='Nom'
-					value={intitule}
-					onChange={(e) => setIntitule(e.target.value)}
-					placeholder='formation.For_Intitule'
-				/>
-				{/* Ajoutez les autres champs de saisie en utilisant le composant ChampSaisie */}
-				<ChampSaisie
-					label='Description'
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
-					placeholder='formation.For_Description'
-				/>
-				<ChampSaisie
-					label='Tarif HT'
-					value={tarif}
-					onChange={(e) => setTarif(e.target.value)}
-					placeholder='formation.For_Tarif_HT'
-				/>
-				<ChampSaisie
-					label='Durée'
-					value={duree}
-					onChange={(e) => setDuree(e.target.value)}
-					placeholder='formation.For_Duree'
-				/>
-				<ChampSaisie
-					label="Type d'intitulé"
-					value={typeIntitule}
-					onChange={(e) => setTypeIntitule(e.target.value)}
-					placeholder='formation.For_Type_Intitule'
-				/>
-				<ChampSaisie
-					label='Type de formation'
-					value={typeFormation}
-					onChange={(e) => setTypeFormation(e.target.value)}
-					placeholder='formation.For_Type_Formation'
-				/>
-				<div className='row'>
-					<div className='col-md-6'>
-						<button onClick={handleEdit}>Edit</button>
-					</div>
-					<div className='col-md-6'>
-						<button onClick={handleDelete}>Delete</button>
+		<Layout>
+			<div>
+				<div>
+					<h2>Formation details</h2>
+					<ChampSaisie
+						label='Nom'
+						value={intitule}
+						onChange={(e) => setIntitule(e.target.value)}
+						placeholder={formation.data.For_Intitule}
+					/>
+					{/* Ajoutez les autres champs de saisie en utilisant le composant ChampSaisie */}
+					<ChampSaisie
+						label='Description'
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+						placeholder={formation.data.For_Description}
+					/>
+					<ChampSaisie
+						label='Tarif HT'
+						value={tarif}
+						onChange={(e) => setTarif(e.target.value)}
+						placeholder={formation.data.For_Tarif_HT}
+					/>
+					<ChampSaisie
+						label='Durée'
+						value={duree}
+						onChange={(e) => setDuree(e.target.value)}
+						placeholder={formation.data.For_Duree}
+					/>
+					<ChampSaisie
+						label='Type de formation'
+						value={typeFormation}
+						onChange={(e) => setTypeFormation(e.target.value)}
+						placeholder={formation.data.For_Type_Formation}
+					/>
+					<div className='row'>
+						<div className='col-md-6'>
+							<button onClick={handleEdit}>Edit</button>
+						</div>
+						<div className='col-md-6'>
+							<button onClick={handleDelete}>Delete</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</Layout>
 	);
 };
 
 export async function getServerSideProps({ params }) {
-
-	const url = `/api/provider/formations/1`;
+	const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+	console.log(params.id)
+	const url = `${baseUrl}/api/formations/${params.id}`;
 	const option = {
 		method: 'GET',
 		headers: {
@@ -130,7 +127,8 @@ export async function getServerSideProps({ params }) {
 	};
 
 	const response = await fetch(url, option)
-	const formation = response.data;
+	const formation = await response.json();
+	console.log(formation)
 
 	return {
 		props: {
@@ -139,4 +137,4 @@ export async function getServerSideProps({ params }) {
 	};
 }
 
-export default FormationPage;
+FormationPage.auth = true;
