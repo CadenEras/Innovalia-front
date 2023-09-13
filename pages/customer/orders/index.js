@@ -70,7 +70,7 @@ const FormationList = () => {
 						Authorization : `Bearer ` + token
 					}
 				};
-				await fetch(`/api/formations/booking/unbook/${formations.reservation.Com_Commande_id}/`, option)
+				await fetch(`/api/formations/booking/unbook/${formations?.reservation?.Com_Commande_id}/`, option)
 					.then(async (response) => {
 						const usable = await response.json();
 						console.log("Response in create form:", usable);
@@ -91,7 +91,6 @@ const FormationList = () => {
 
 	if (isLoading) return (<p>Loading...</p>)
 	if (formations.length === 0) return <p>No data</p>;
-	console.log("map : ", formations.map( (formation) => formation.reservation))
 
 	return (
 		<Layout>
@@ -99,10 +98,10 @@ const FormationList = () => {
 				<h1>Vos formations souscrites :</h1>
 				<div className='formation-grid'>
 					{formations.map((formation) => (
-						<div key={formation.reservation.Res_Reservation_id}>
-							<h4>{formation.reservation.Res_Inttitule}</h4>
-							<p>Date de début de la formation : {formation.reservation.Res_Dte_Debut}</p>
-							<p>Date de fin de la formation : {formation.reservation.Res_Dte_Fin}</p>
+						<div key={formation?.reservation?.Res_Reservation_id}>
+							<h4>{formation?.reservation?.Res_Inttitule}</h4>
+							<p>Date de début de la formation : {formation?.reservation?.Res_Dte_Debut}</p>
+							<p>Date de fin de la formation : {formation?.reservation?.Res_Dte_Fin}</p>
 							{session && (
 								<button onClick={() => handleUnSubscribe(formation)}>Se désinscrire</button>
 							)}
