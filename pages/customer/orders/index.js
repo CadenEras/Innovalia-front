@@ -77,7 +77,8 @@ const FormationList = () => {
 						const usable = await response.json();
 						console.log("Response in create form:", usable);
 						if (response.status === 200) {
-							return router.push("/customer/orders/");
+							//return router.push("/customer/orders/");
+							console.log("ok")
 						}
 						console.error("Une erreur est survenue lors de la désinscription.");
 						setError(
