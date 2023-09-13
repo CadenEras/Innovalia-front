@@ -9,8 +9,10 @@ import orderUser from "@/components/order";
 import OrderUser from "@/components/order";
 import Link from "next/link";
 import { router } from "next/client";
+import { useRouter } from "next/router";
 
 const FormationList = () => {
+	const router = useRouter();
 	const [error, setError] = useState("");
 	const [formations, setFormations] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
