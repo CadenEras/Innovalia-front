@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "@/components/layout";
 import { useSession } from "next-auth/react";
+import Sidebar from "@/components/cm-account/sidebar";
 
 export default function Account() {
 	const [user, setUser] = useState(null);
@@ -86,6 +87,7 @@ export default function Account() {
 				<section>
 					<h1>Bonjour {user.Per_Prenom} !</h1>
 				</section>
+				<Sidebar />
 				<div className='row'>
 					<div className='col-12 col-md-3 border-right'>
 					</div>

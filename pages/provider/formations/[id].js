@@ -73,32 +73,32 @@ console.log(formation)
 						label='Nom'
 						value={intitule}
 						onChange={(e) => setIntitule(e.target.value)}
-						placeholder={formation.data.For_Intitule}
+						placeholder={formation?.data?.For_Intitule}
 					/>
 					{/* Ajoutez les autres champs de saisie en utilisant le composant ChampSaisie */}
 					<ChampSaisie
 						label='Description'
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
-						placeholder={formation.data.For_Description}
+						placeholder={formation?.data?.For_Description}
 					/>
 					<ChampSaisie
 						label='Tarif HT'
 						value={tarif}
 						onChange={(e) => setTarif(e.target.value)}
-						placeholder={formation.data.For_Tarif_HT}
+						placeholder={formation?.data?.For_Tarif_HT}
 					/>
 					<ChampSaisie
 						label='Durée'
 						value={duree}
 						onChange={(e) => setDuree(e.target.value)}
-						placeholder={formation.data.For_Duree}
+						placeholder={formation?.data?.For_Duree}
 					/>
 					<ChampSaisie
 						label='Type de formation'
 						value={typeFormation}
 						onChange={(e) => setTypeFormation(e.target.value)}
-						placeholder={formation.data.For_Type_Formation}
+						placeholder={formation?.data?.For_Type_Formation}
 					/>
 					<div className='row'>
 						<div className='col-md-6'>
@@ -116,8 +116,6 @@ console.log(formation)
 
 export async function getServerSideProps({ params }) {
 	const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-	console.log(params.id)
-	console.log(baseUrl)
 	const url = `${baseUrl}/api/formations/${params.id}`;
 	const option = {
 		method: 'GET',
@@ -129,7 +127,6 @@ export async function getServerSideProps({ params }) {
 
 	const response = await fetch(url, option)
 	const formation = await response.json();
-	console.log(formation)
 
 	return {
 		props: {

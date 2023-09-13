@@ -52,7 +52,7 @@ const SidebarAdmin = () => {
 							</li>
 							<li>
 								<Link
-									href='/provider/formations/index'
+									href='/provider/formations/'
 									className='nav-link active pt-2'
 									aria-current='page'
 								>

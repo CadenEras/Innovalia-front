@@ -4,17 +4,17 @@ const axios = require('axios');
 
 export default async function handler(req, res) {
 	try {
-		const headers = req.headers;
+		const headers = req.headers
+		const { id } = req.query;
 
 		if (!headers) {
-			return res.status(406).json({ data: 'Not Acceptable error: Server cannot produce a response matching the list of acceptable values.' });
+			return res.status(406).json({ data: 'Not Acceptable error: Server cannot produce a response matching the list of acceptable values.' })
 		}
 
-		const response = await axios.get('http://51.77.213.191:8000/api/dashboard/formations', { headers });
-
-		return res.status(response.status).json({ data: response.data });
+		const response = await axios.post(`http://51.77.213.191:8000/api/user/formations/${id}`, { headers });
+		// Handle successful response
+		return res.status(response.status).json({ data: response.data})
 	} catch (error) {
-		// Handle any unexpected errors
 		if (error.response) {
 			// The request was made, but the server responded with a status code
 			// that falls out of the range of 2xx

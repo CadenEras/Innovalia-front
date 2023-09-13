@@ -28,7 +28,7 @@ function FormationList() {
 		// Fetch all formations
 		const fetchFormations = async () => {
 			try {
-				const response = await fetch("/api/formations/index", {
+				const response = await fetch("/api/formations/indexeur", {
 					headers: {
 						Accept: "application/json",
 						"Content-Type": "application/json",

@@ -20,16 +20,16 @@ export default function Navbar() {
 			if (session.user.userPerm === 2) {
 				setProfileLink(`/admin/index.js`);
 			} else if (session.user.userPerm === 1) {
-				setProfileLink(`/provider/${session.user.userId}`);
+				setProfileLink(`/provider/profil/${session.user.userId}`);
 			} else {
-				setProfileLink(`/customer/${session.user.userId}`);
+				setProfileLink(`/customer/profil/${session.user.userId}`);
 			}
 		}
 	}, [session]);
 
 	return (
 		<div>
-			<nav className='cm-navbar navbar-expand-xl bg-body'>
+			<nav className='cm-navbar navbar-expand-lg bg-body'>
 				<div className='container-fluid'>
 					<Link className='cm-navbar-brand' href='/'>
 						<Image
@@ -61,7 +61,7 @@ export default function Navbar() {
 								<Link
 									className='nav-link active'
 									aria-current='page'
-									href='/lessons'
+									href='/'
 								>
 									Leçons
 								</Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
 								<Link
 									className='nav-link active'
 									aria-current='page'
-									href='/event'
+									href='/'
 								>
 									Évènements
 								</Link>

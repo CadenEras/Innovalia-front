@@ -4,21 +4,21 @@ const axios = require('axios');
 
 export default async function handler(req, res) {
 	try {
-		const headers = req.headers;
+		const headers = req.headers
 
 		if (!headers) {
-			return res.status(406).json({ data: 'Not Acceptable error: Server cannot produce a response matching the list of acceptable values.' });
+			return res.status(406).json({ data: 'Not Acceptable error: Server cannot produce a response matching the list of acceptable values.' })
 		}
 
-		const response = await axios.get('http://51.77.213.191:8000/api/dashboard/formations', { headers });
-
-		return res.status(response.status).json({ data: response.data });
+		const response = await axios.get('http://51.77.213.191:8000/api/cm/formations', { headers });
+		// Handle successful response
+		return res.status(response.status).json({ data: response.data})
 	} catch (error) {
-		// Handle any unexpected errors
 		if (error.response) {
 			// The request was made, but the server responded with a status code
 			// that falls out of the range of 2xx
 			console.error('Response status:', error.response.status);
+			console.log(error.response.data)
 			const status = error.response.status;
 
 			if (status === 400) {
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 			} else if (status === 403) {
 				res.status(403).json({ message: 'Forbidden error: You do not have permission.' });
 			} else if (status === 404) {
-				res.status(404).json({ message: 'Not Found error: Resource not found.' });
+				return res.status(404).json({ message: 'Not Found error: Resource not found.' });
 			} else if (status === 405) {
 				res.status(405).json({ message: 'Method Not Allowed error: Invalid HTTP method.' });
 			} else if (status === 406) {
