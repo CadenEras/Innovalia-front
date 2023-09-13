@@ -22,7 +22,7 @@ export default function CmFormationItem({ formation }) {
 		formation?.data?.Fort_Type_id
 	);
 
-	const handleUnSubscribe = async () => {
+	/*const handleUnSubscribe = async () => {
 		if(status === "authenticated"){
 			const token = session?.user?.accessToken;
 			try {
@@ -51,7 +51,7 @@ export default function CmFormationItem({ formation }) {
 				console.error("Erreur lors de la désinscription :", error);
 			}
 		}
-	};
+	};*/
 
 	return (
 		<Layout>
@@ -66,7 +66,6 @@ export default function CmFormationItem({ formation }) {
 						<p>Address: {formation?.data?.Adr_Adresse_L1}</p>
 						<p>Code postal: {formation?.data?.Adr_CP}</p>
 						<p>Ville: {formation?.data?.Adr_Ville}</p>
-						<button onClick={handleUnSubscribe}>Se désinscrire</button>
 					</div>
 				)}
 			</div>
@@ -74,7 +73,7 @@ export default function CmFormationItem({ formation }) {
 	);
 }
 
-export async function getServerSideProps({ params }) {
+/*export async function getServerSideProps({ params }) {
 	const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 	console.log(params.id)
 	console.log(baseUrl)
@@ -95,4 +94,4 @@ export async function getServerSideProps({ params }) {
 			formation,
 		},
 	};
-}
+}*/
